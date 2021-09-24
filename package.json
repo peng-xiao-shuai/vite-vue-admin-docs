@@ -8,10 +8,16 @@
   "scripts": {
     "dev": "vitepress dev .",
     "build": "vitepress build .",
+    "nodeBuild": "node ./scripts/build.js",
     "serve": "vitepress serve .",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "chalk": "^4.1.0",
     "vitepress": "^0.19.1"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "lodash": "^4.17.21"
   }
 }
