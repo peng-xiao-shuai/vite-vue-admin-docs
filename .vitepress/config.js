@@ -33,7 +33,7 @@ module.exports = {
     nav: [
       { text: '指引', link: '/guide/' },
       {
-        text: '组件 & 功能',
+        text: '组件 & 指令',
         items: [
           { 
             text: '组件-表格',
@@ -64,6 +64,10 @@ module.exports = {
             {
               text: '介绍',
               link: '/guide/'
+            },
+            {
+              text: '为什么使用 Vite',
+              link: '/guide/why'
             },
             {
               text: '功能',
