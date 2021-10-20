@@ -4,8 +4,8 @@ heroImage: /logo.svg
 actionText: 快速开始 →
 actionLink: /guide/
 
-# altActionText: 了解更多
-# altActionLink: /guide/why
+altActionText: 在线预览
+altActionLink: http://peng-xiao-shuai.github.io/vite-vue-admin/
 
 features:
   - title: ⚡️ 极速的服务启动

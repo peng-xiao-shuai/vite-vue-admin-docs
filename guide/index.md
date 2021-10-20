@@ -1,6 +1,6 @@
 # 介绍 {#getting-started}
 
-[Vite-Vue-Admin](https://peng-xiao-shuai.github.io/vite-vue-admin/) 是一个前端后台管理模板，它基于 `Vite2.X、vue3.X、vue-router4.X、vuex4.X、element-plus、typeScript` 实现。它使用了最新的前端技术栈，内置了 `vue-i18n` 国际化解决方案，动态路由，二开表格组件，antd-x6，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。相信不管你的需求是什么，本项目都能帮助到你。
+[Vite-Vue-Admin](https://peng-xiao-shuai.github.io/vite-vue-admin/) 是一个前端后台管理模板，它基于 `Vite2.x、Vue3.x、Vue-router4.x、Vuex4.x、Element-plus、TypeScript` 实现。它使用了最新的前端技术栈，内置了 `vue-i18n` 国际化解决方案，动态路由，二开表格组件，antd-x6，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。也可以作为一个示例，用于学习 `Vue3、Vite、Ts` 等主流技术。
 
 :::tip 建议
 如果你是刚学习 `vue` 的小伙伴，本项目可能不适合你。本项目的定位是后台集成方案，不太适合当基础模板来进行二次开发。因为本项目集成了很多你可能用不到的功能，会造成不少的代码冗余。如果你的项目不关注这方面的问题，也可以直接基于它进行二次开发。
@@ -102,3 +102,21 @@
 ├─tsconfig                   # typescript 配置
 └─package.json               # package.json
 ```
+
+## 前序准备
+本项目需要一定前端基础知识，请确保掌握 Vue 的基础知识，以便能处理一些常见的问题。 建议在开发前先学一下以下内容，提前了解和学习这些知识，会对项目理解非常有帮助:
+- [Vue2 迁移到 3](https://v3.cn.vuejs.org/guide/migration/introduction.html)
+- [Vue3中文文档](https://v3.cn.vuejs.org/)
+- [TypeScript](https://www.typescriptlang.org/) OR [TypeScript中文文档](https://www.tslang.cn/)
+- [Vue-router](https://next.router.vuejs.org/zh/index.html)
+- [Element-plus](https://element-plus.gitee.io/zh-CN/guide/design.html)
+- [ECMAScript 6 入门](https://es6.ruanyifeng.com/#README)
+- [Vitejs](https://cn.vitejs.dev/)
+- [Mockjs](http://mockjs.com/)
+
+## 如何加入我们
+本文档项目地址 [Vite-Vue-Admin-Docs](https://github.com/peng-xiao-shuai/vite-vue-admin-dosc) 基于 [Vitepress](https://vitejs.cn/vitepress/#motivation) 开发。
+
+有任何修改和建议都可以该项目 `pr` 和 `issue`
+
+`Vite-Vue-Admin` 还在持续迭代中，逐步沉淀和总结出更多功能和相应的实现代码，总结中后台产品模板/组件/业务场景的最佳实践。同时整个项目本着一切免费的原则，原则上不会收取任何费用及版权，可以放心使用。本项目也十分期待你的参与和反馈。

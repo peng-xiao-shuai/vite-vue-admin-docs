@@ -70,8 +70,8 @@ module.exports = {
               link: '/guide/why'
             },
             {
-              text: '功能',
-              link: '/guide/features'
+              text: '开始',
+              link: '/guide/start'
             },
             {
               text: '使用插件',

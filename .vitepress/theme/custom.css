@@ -1,3 +1,11 @@
+.container {
+  max-width: 65rem !important;
+}
+
+.carbon-ads {
+  display: none;
+}
+
 .home-hero .image {
   width: 200px;
   height: 200px;
