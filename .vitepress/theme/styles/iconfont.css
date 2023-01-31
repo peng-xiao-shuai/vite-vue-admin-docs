@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('/iconfont.ttf') format('truetype');
+}
+
+i[class*='icon-'] {
+	font-family: 'iconfont' !important;
+	font-style: normal;
+  font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  color: #999;
+}
+
+.icon-github:before {
+  content: "\e6b7";
+}
+
+.icon-code:before {
+  content: "\e747";
+}
+
+.icon-fuzhi:before {
+  content: "\e603";
+}
+

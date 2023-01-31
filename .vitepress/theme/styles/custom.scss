@@ -1,0 +1,43 @@
+/*修改滚动条样式*/
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(239, 239, 239);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(144, 147, 153, 0.3);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(144, 147, 153, 0.5);
+}
+
+.VPDoc > .container > .content {
+  background-image: radial-gradient(transparent 1px, var(--bg-color) 1px);
+  background-size: 4px 4px;
+  padding: 0 !important;
+  .content-container {
+    max-width: 100% !important;
+  }
+}
+
+.pt {
+  table,
+  ul,
+  li + li {
+    margin: 0;
+  }
+
+  tr {
+    &:nth-child(2n) {
+      background-color: var(--el-table-tr-bg-color);
+    }
+    td {
+      border-top: none;
+    }
+  }
+}
