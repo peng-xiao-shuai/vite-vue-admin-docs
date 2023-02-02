@@ -12,10 +12,7 @@ export default (md: MarkdownIt): void => {
     const str = state.src.slice(state.pos, state.posMax);
 
     if (!tooltipRegExp.test(str)) return false;
-    console.log(str, silent, '11\n');
-
     if (silent) return true;
-
     const result = str.match(tooltipRegExp);
 
     if (!result) return false;
