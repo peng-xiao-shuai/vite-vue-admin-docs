@@ -11,6 +11,10 @@ span[class~='language-css']:before {
 }
 
 :root {
+  --code-font-family: var(--font-family-mono);
+  --code-font-size: var(--el-font-size-base);
+  --code-font-size: var(--el-font-size-base);
+  --code-text-color: var(--el-text-color-primary);
   --code-tooltip-color: var(--vp-c-brand);
   --code-tooltip-bg-color: var(--el-fill-color-light);
 
@@ -70,8 +74,11 @@ code {
   font-family: var(--code-font-family);
   font-size: var(--code-font-size);
   color: var(--code-text-color);
-  line-height: var(--code-line-height);
   background-color: var(--code-bg-color);
+}
+.button-tooltip {
+  background-color: var(--code-bg-color);
+  padding: 0.1rem 0.5rem;
 }
 
 pre {
