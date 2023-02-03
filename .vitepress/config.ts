@@ -127,8 +127,12 @@ export default defineConfig({
           text: '组件',
           items: [
             {
-              text: '表格',
-              link: '/zh-CN/component/powerful-table',
+              text: '表格-文档',
+              link: '/zh-CN/component/powerful-table-doc',
+            },
+            {
+              text: '表格-示例',
+              link: '/zh-CN/component/powerful-table-demo',
             },
           ],
         },

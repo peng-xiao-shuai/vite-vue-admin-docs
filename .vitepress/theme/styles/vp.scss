@@ -42,4 +42,10 @@
   tr:nth-child(2n) {
     background-color: unset !important;
   }
+
+  .vp-table + h2 {
+    margin: 16px 0 16px;
+    padding: 0;
+    border-top: none;
+  }
 }
