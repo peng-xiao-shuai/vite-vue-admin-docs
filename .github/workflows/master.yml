@@ -19,4 +19,4 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} #secrets.ACCESS_TOKEN是项目配置的密钥
           BRANCH: gh-pages # 操作应部署到的分支。
-          FOLDER: dist # 操作应部署的文件夹。
+          FOLDER: .vitepress/dist # 操作应部署的文件夹。
