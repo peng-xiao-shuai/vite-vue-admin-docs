@@ -122,13 +122,13 @@ const handleBtnClick = (e: typeof operateList[0]) => {
 
 <style scoped lang="scss">
 .code-operate {
-  border: 1px solid var(--vp-c-text-4);
+  border: 1px solid var(--vp-c-divider);
   border-radius: 2px;
   &-demo {
     padding: 20px;
   }
   &-btn {
-    border-top: 1px solid var(--vp-c-text-4);
+    border-top: 1px solid var(--vp-c-divider);
     padding: 10px;
     display: flex;
     justify-content: end;
