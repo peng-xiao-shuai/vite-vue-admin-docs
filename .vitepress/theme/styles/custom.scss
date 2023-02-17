@@ -16,15 +16,6 @@
   background-color: rgba(144, 147, 153, 0.5);
 }
 
-.VPDoc > .container > .content {
-  background-image: radial-gradient(transparent 1px, var(--bg-color) 1px);
-  background-size: 4px 4px;
-  padding: 0 !important;
-  .content-container {
-    max-width: 100% !important;
-  }
-}
-
 .pt {
   table,
   ul,
@@ -33,11 +24,20 @@
   }
 
   tr {
+    border: none;
     &:nth-child(2n) {
       background-color: var(--el-table-tr-bg-color);
+    }
+    th {
+      font-size: inherit;
     }
     td {
       border-top: none;
     }
   }
+}
+
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }

@@ -4,6 +4,7 @@
     overflow-y: hidden;
     overflow-x: auto;
     & > table {
+      display: table;
       margin-top: 0;
       border-collapse: collapse;
       width: 100%;
@@ -27,6 +28,7 @@
         padding: 0.6em 1em;
         text-align: left;
         white-space: pre-wrap;
+        min-width: 100px;
       }
 
       thead tr:first-child th {
@@ -47,5 +49,13 @@
     margin: 16px 0 16px;
     padding: 0;
     border-top: none;
+  }
+}
+
+.VPDoc > .container > .content {
+  background-image: radial-gradient(transparent 1px, var(--bg-color) 1px);
+  background-size: 4px 4px;
+  .content-container {
+    max-width: 100% !important;
   }
 }
