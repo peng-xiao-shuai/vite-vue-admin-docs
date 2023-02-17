@@ -10,6 +10,11 @@ outline: [1, 4]
 `el-plus-powerful-table` 的 `ts` 版本。[DEMO](https://peng-xiao-shuai.github.io/el-plus-powerful-table/)
 :::
 
+### 标签
+
+> <el-tag type="danger" class="mx-1" effect="light" round>[版本号]</el-tag> 表示功能`废弃` <br/>
+> <el-tag type="success" class="mx-1" effect="light" round>[版本号]</el-tag> 表示功能`新增` <br/>
+
 ### 语言
 对于语言方面组件是默认使用 `英语` 因为 `element-plus` 默认是使用`英语`，不引用中文包的主要原因是避免增大体积。
 组件内部语言跟随 `element-plus`。 部分 提示文字 语言，组件内部也支持 `中、英` 文，如果你需要支持更多语言或者更改组件内部
@@ -63,7 +68,7 @@ app.mount("#app");
 | `paginationProperty` | 分页器组件扩展字段 | ^[object]`Partial<PaginationProps>` | - |
 | `property` | 表格组件扩展字段 | ^[object]`Partial<TableProps<Row>>` | - |
 
-### OperateData
+### OperateData（批量操作配置）
 
 :::tip 提示
 如果表格有 `header.props.type` 为 `input` 的则需要先填写该行数据，在选中该行，否则会出现获取不到 `input` 的值
@@ -85,7 +90,7 @@ app.mount("#app");
 | `label` | 批量操作下拉框显示文字 | `string` | - |
 | `value` | 批量操作下拉框值 | `string` | - |
 
-### BtnConfig
+### BtnConfig（顶部按钮配置）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | --- | ------ |
@@ -103,7 +108,7 @@ app.mount("#app");
 | `effect` | 自定义数据将会在自定义事件 `btn-plus-change` 抛出 | `string` | - |
 | `showBtn` | 控制按钮显示隐藏 | ^[function / boolean]`(row: Row, index: number) => boolean \| boolean` | - |
 
-### Header
+### Header（表格配置）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ---- | ------ |
@@ -163,7 +168,7 @@ data: setData<'image', any>({
 :::tip
 内部组件中的 `Emit` 事件将会抛出在 `component-emit` 上。具体内部组件中有哪些事件返回什么参数，将会在下面文档详细介绍。
 :::
-#### Type = `'text'` （默认 `'text'`）
+#### Type = `'text'`（默认）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ------ |
@@ -178,7 +183,7 @@ data: setData<'image', any>({
 | `click` | 点击触发 | ^[function]`{row: Row, index: number, prop: string, event: Event}` |
 
 
-#### Type = `'image'`
+#### Type = `'image'`（图片）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ----- | ------ |
@@ -194,7 +199,7 @@ data: setData<'image', any>({
 | `switch` | 图片加载成功触发 | `index: number` |
 | `close` | 图片加载成功触发 | - |
 
-#### Type = `'btn'`
+#### Type = `'btn'`（按钮）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ----- | ---- |
@@ -208,7 +213,7 @@ data: setData<'image', any>({
 | `property` | 属性扩展字段 (支持 `el-button` 组件所有参数) | ^[object / function]`Partial<ButtonProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'btn', Row> }) => Partial<ButtonProp>` | - |
 | `tipProperty` | 属性扩展字段 | ^[object]`Partial<ElTooltipProps>` | - |
 
-#### Type = `'switch'`
+#### Type = `'switch'`（开关）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ----- |
@@ -221,14 +226,14 @@ data: setData<'image', any>({
 | ------ | --- | ---- |
 | `change` | `switch` 状态发生变化时的回调函数 | `val` 新状态的值 |
 
-#### Type = `'input | textarea'`
+#### Type = `'input | textarea'`（输入框）
 
-| 参数 | 说明 | TS类型 | 可选值 | 默认值 |
-| ---- | --- | ------ | ----- | ------ |
-| `style` | 输入框样式 | `CSSProperties` | - | - |
+| 参数 | 说明 | TS类型 | 默认值 |
+| ---- | --- | ------ | ------ |
+| `style` | 输入框样式 | `CSSProperties` | - |
 | `slot` | 输入框前置或后置 | ^[enum]`'prepend' \| 'append' \| 'prefix' \| 'suffix'` | - |
-| `symbol` | 文字或者符号在插槽中显示 | `string` | - | - |
-| `property` | 属性扩展字段 (支持 `el-input` 组件所有参数) | ^[object / function]`Partial<InputProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'input', Row> }) => Partial<InputProp>` | - | - |
+| `symbol` | 文字或者符号在插槽中显示 | `string` | - |
+| `property` | 属性扩展字段 (支持 `el-input` 组件所有参数) | ^[object / function]`Partial<InputProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'input', Row> }) => Partial<InputProp>` | - |
 
 #### Input Emit
 
@@ -240,19 +245,19 @@ data: setData<'image', any>({
 | `input` | 在 `Input` 值改变时触发 | `value: string \| number` |
 | `clear` | 点击由 `clearable` 属性生成的清空按钮时触发 | - |
 
-#### Type = `'video'`
+#### Type = `'video'`（视频）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | `style`  | 样式 | `CSSProperties` | - |
 | `property` | 属性扩展字段 (支持 `video` 标签所有参数) | ^[object / function]`Partial<VideoHTMLAttributes> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'video', Row> }) => Partial<VideoHTMLAttributes>` | - |
 
-#### Type = `'iconfont'`
+#### Type = `'iconfont'`（图标）
 
-| 参数  | 说明           | TS类型           | 可选值 | 默认值 |
-| ----- | -------------- | -------------- | ------ | ------ |
-| `class` | 样式类 | `string \| string[]` | - | - |
-| `style` | 图标自定义样式 | `CSSProperties` | - | - |
+| 参数  | 说明           | TS类型           | 默认值 |
+| ----- | -------------- | -------------- | ------ |
+| `class` | 样式类 | `string \| string[]` | - |
+| `style` | 图标自定义样式 | `CSSProperties` | - |
 
 #### Iconfont Emit
 
@@ -260,7 +265,7 @@ data: setData<'image', any>({
 | ------ | --- | ---- |
 | `click` | 点击触发 | ^[object]`{row: Row, index: number, prop: string, event: Event}` |
 
-#### Type = `'rate'`
+#### Type = `'rate'`（评分）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ------ |
@@ -271,10 +276,10 @@ data: setData<'image', any>({
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
-| `click` | 点击触发 | ^[object]`{row: Row, index: number, prop: string, event: Event}` |
+| `click` <el-tag type="danger" class="mx-1" effect="light">2.1.5</el-tag> | 点击触发 | ^[object]`{row: Row, index: number, prop: string, event: Event}` |
 | `change` | 值改变触发 | `val` 改变后的值 |
 
-#### Type = `'href'`
+#### Type = `'href'`（超链接）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ---- | ----- |
@@ -283,7 +288,7 @@ data: setData<'image', any>({
 | `text` | 所显示的文本 | ^[string / function]`(row: Row) => string` | - |
 | `property` | 属性扩展字段 (支持 `el-link` 组件所有参数) | ^[object / function]`Partial<LinkProps> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'href', Row> }) => Partial<LinkProps>`  | - |
 
-#### Type = `'slot'`
+#### Type = `'slot'`（插槽）
 
 ```js
 //示例
@@ -310,7 +315,7 @@ data: setData<'image', any>({
 </powerful-table>
 ```
 
-#### Type = `'tag'`
+#### Type = `'tag'`（标签）
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ----- | ----- |
