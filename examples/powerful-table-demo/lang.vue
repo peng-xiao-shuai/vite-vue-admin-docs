@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { useBasicTableData } from './index';
 // import { LangKey } from 'el-plus-powerful-table-ts/es/locale/packages';
-import type { LangPackages } from 'el-plus-powerful-table-ts';
+// import type { LangPackages } from 'el-plus-powerful-table-ts';
 const { headers, lists } = useBasicTableData();
 
 // const langPackages: LangPackages = {
