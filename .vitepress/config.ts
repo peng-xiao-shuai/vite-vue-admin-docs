@@ -60,7 +60,7 @@ export default defineConfig({
       { text: '指引', link: '/zh-CN/guide/' },
       {
         text: '组件 & 指令',
-        link: '/zh-CN/component/',
+        link: '/zh-CN/component/powerful-table-doc',
       },
       {
         text: '相关链接',
