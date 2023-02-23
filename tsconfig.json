@@ -10,8 +10,11 @@
     "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
-
-    "types": ["vite/client", "element-plus/global"]
+    "types": [
+      "vite/client",
+      "element-plus/global",
+      "el-plus-powerful-table-ts/es/global"
+    ]
   },
   "include": [
     "**/*.ts",
