@@ -1,0 +1,54 @@
+<template>
+  <PowerfulTable :list="lists" :header="headers" />
+</template>
+
+<script lang="ts" setup>
+import { useBasicTableData } from './index';
+// import { LangKey } from 'el-plus-powerful-table-ts/es/locale/packages';
+import type { LangPackages } from 'el-plus-powerful-table-ts';
+const { headers, lists } = useBasicTableData();
+
+// const langPackages: LangPackages = {
+//   en: {
+//     [LangKey.Confirm]: 'Confirm',
+//     [LangKey.Column]: 'Column',
+//     [LangKey.ColumnName]: 'Column name',
+//     [LangKey.Hidden]: 'Hidden',
+//     [LangKey.Filter]: 'Filter',
+//     [LangKey.Cancel]: 'Cancel',
+//     [LangKey.Hint]: 'Hint',
+//     [LangKey.More]: 'More',
+//     [LangKey.NoData]: 'NO DATA',
+//     [LangKey.PackUp]: 'Pack up',
+//     [LangKey.ReadFullText]: 'Read full text',
+//     [LangKey.InputContent]: 'Input content',
+//     [LangKey.Select]: 'Select',
+//     [LangKey.Open]: 'Open',
+//     [LangKey.Close]: 'Close',
+//     [LangKey.SelectOperateType]: 'Please select an operation type',
+//     [LangKey.SelectOperateData]:
+//       'Please select the data you want to manipulate',
+//     [LangKey.BatchOperate]: (s) => `Whether to batch ${s} the data?`,
+//   },
+//   'zh-cn': {
+//     [LangKey.Confirm]: '确认',
+//     [LangKey.Column]: '列',
+//     [LangKey.ColumnName]: '列名',
+//     [LangKey.Hidden]: '隐藏',
+//     [LangKey.Filter]: '过滤',
+//     [LangKey.Cancel]: '取消',
+//     [LangKey.Hint]: '提示',
+//     [LangKey.More]: '更多',
+//     [LangKey.NoData]: '暂无数据',
+//     [LangKey.PackUp]: '收起',
+//     [LangKey.ReadFullText]: '展开阅读全文',
+//     [LangKey.InputContent]: '请输入内容',
+//     [LangKey.Select]: '请选择',
+//     [LangKey.Open]: '开启',
+//     [LangKey.Close]: '关闭',
+//     [LangKey.SelectOperateType]: '请选择操作类型',
+//     [LangKey.SelectOperateData]: '请选择要操作的数据',
+//     [LangKey.BatchOperate]: (s) => `是否要进行批量 ${s} 操作?`,
+//   },
+// };
+</script>
