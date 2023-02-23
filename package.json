@@ -9,7 +9,7 @@
     "dev": "vitepress dev . --optimizeDeps",
     "build": "vitepress build .",
     "serve": "vitepress serve .",
-    "gitBuild": "vitepress build . --base=/vite-vue-admin-docs/"
+    "gitBuild": "vitepress build ."
   },
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",

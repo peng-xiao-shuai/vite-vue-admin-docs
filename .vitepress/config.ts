@@ -1,4 +1,3 @@
-// // @ts-check
 import { defineConfig } from 'vitepress';
 import fs from 'fs';
 import path from 'path';
@@ -7,16 +6,15 @@ import mdContainer from 'markdown-it-container';
 import tableWrapper from '../utils/table-wrapper';
 import tooltip from '../utils/tooltip';
 import { highlight } from '../utils/highlight';
-import pkg from '../package.json';
 
-const md = markdownIt();
 const docRoot = path.resolve(process.cwd() + '/');
 
 /**
- * @type {import('vitepress').UserConfig}
+ * @type {import('vitepress').UserConfig & DocsGitInfo}
  */
 export default defineConfig({
   title: 'Vite-Vue-Admin',
+  base: '/vite-vue-admin-docs/',
   lang: 'zh-CN',
   description: '基于Vite.js & Vue.js的管理网站',
   head: [['link', { rel: 'icon', href: '/logo.svg' }]],
@@ -27,7 +25,8 @@ export default defineConfig({
     logo: '/logo.svg',
     // docsBranch: 'main',
     editLink: {
-      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
+      pattern:
+        'https://github.com/peng-xiao-shuai/vite-vue-admin-docs/edit/main/:path',
       text: '帮助我们改善此页面！',
     },
     lastUpdatedText: '最后更新时间',

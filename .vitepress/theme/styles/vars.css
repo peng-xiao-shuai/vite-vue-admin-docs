@@ -11,6 +11,7 @@
   --vp-c-brand-darker: #454ce1;
   --vp-c-brand-dimm: rgba(100, 108, 255, 0.08);
 
+  --text-color: var(--el-text-color-primary);
   --border-color: var(--el-border-color);
   --border-color-light: var(--el-border-color-lighter);
   --font-family: var(--el-font-family);
