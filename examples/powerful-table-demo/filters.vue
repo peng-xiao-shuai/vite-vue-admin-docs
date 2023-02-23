@@ -1,10 +1,5 @@
 <template>
-  <PowerfulTable
-    ref="PowerfulTable"
-    :list="lists"
-    :isPagination="false"
-    :header="header"
-  >
+  <PowerfulTable ref="PowerfulTable" :list="lists" :header="header">
   </PowerfulTable>
 </template>
 

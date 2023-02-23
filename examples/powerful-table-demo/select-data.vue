@@ -5,7 +5,6 @@
     isSelect
     :selectData="[{ ID: 1 }, { ID: 2 }]"
     :selectCompare="['ID', 'id']"
-    :isPagination="false"
     :header="headers"
   >
   </PowerfulTable>

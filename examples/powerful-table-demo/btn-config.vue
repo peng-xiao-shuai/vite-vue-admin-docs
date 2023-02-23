@@ -3,7 +3,6 @@
     ref="PowerfulTable"
     :list="lists"
     :btnConfig="btnConfig"
-    :isPagination="false"
     isSelect
     :header="headers"
     @btn-plus-change="btnChange"
