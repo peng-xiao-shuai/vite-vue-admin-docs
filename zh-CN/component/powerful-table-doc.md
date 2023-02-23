@@ -30,14 +30,26 @@ npm i el-plus-powerful-table-ts
 
 ```js
 //main.ts
-import ElementPlus from "element-plus";
-import powerfulTable from "el-plus-powerful-table-ts";
+import powerfulTable from "el-plus-powerful-table-ts/es";
+import { LangKey } from "el-plus-powerful-table-ts/es/locale/packages";
 
 const app = createApp(App);
 app.use(powerfulTable, {
 	btnSlot: 'all',
+  // 更改组件默认语言
+  locale: {
+    en: {
+      [LangKey.NoData]: '空',
+      [LangKey.PackUp]: '收起',
+      [LangKey.ReadFullText]: '展开阅读全文',
+    },
+    'zh-cn': {
+      [LangKey.NoData]: '空',
+      [LangKey.PackUp]: '收起',
+      [LangKey.ReadFullText]: '展开阅读全文',
+    },
+  },
 });
-app.use(ElementPlus);
 app.mount("#app");
 
 //*.vue
@@ -136,13 +148,14 @@ app.mount("#app");
 | `filters` | 过滤，只支持 `type` 为 `text、tag`| ^[array / function]`PowerfulTableFilter[] \| (row: Row, index: number) => string` | `number` |
 | `filtersType` | 过滤类型用于表格顶部右侧列按钮点击时，是否过滤，如果是则自定义表头将根据类型所弹出相应的操作元素（如果指定了 `headerSlotName` 和 `isShowOrFilterColumn` 为 `show` 或者 `false` 将会无效。如果是 `filtersType: select` 需要指定 `filters` 为数组类型） | ^[string]`'select' \| 'date' \| 'input'` | `'input'` |
 | `filterItem`  | 指定过滤项 (当 `props` 是数组且长度大于 `1` 时有用) 如果多个 `prop` 的情况下没有指定 `filterItem` 过滤项 那么将使用第一个作进行过滤 | `boolean`  | - |
+| `customFilter` | 自定义过滤数据 `v(参数为值)，column(参数为header配置项)，resolve(回调函数传递数组)` | ^[function]`(v, column, resolve) => void` | - |
 | `text` | 数据左侧显示的文字 | `string` | - |
 | `reserve` | 当 `prop` 值渲染数据为空时可用 `reserve` 代替空数据 可传 `HTML` 标签  | `HTMLElement / string` | `'no Data'` |
 | `render` | [渲染函数](https://v3.cn.vuejs.org/guide/render-function.html#h-%E5%8F%82%E6%95%B0)  | ^[function]`(h: h, row: Row, index: number) => VNode / string / number` | -  |
 | `style` | 样式  | `CSSProperties` | -  |
 | `slotName` | 插槽名称 | `string` | `'default'` |
 
-#### Filters
+##### Filters
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ------ |
@@ -174,7 +187,7 @@ data: setData<'image', any>({
 | ---- | --- | ------ | ------ |
 | `line` | 超出多少的行数使用 `...` 代替 | `number` | `3` |
 | `develop` | 是否显示 `“展开 / 收起”` 操作按钮 | `boolean` | `false` |
-| `customFilterFun` | 自定义当前单元格数据文本。`props` 为 `header` 配置的当前 `props` 值 | ^[function]`({row: Row, index: number, props: PowerfulTableHeaderProps<'text'>}) => (string \| number) `| - |
+| `formatting` | 自定义当前单元格数据文本。`props` 为 `header` 配置的当前 `props` 值 | ^[function]`({row: Row, index: number, props: PowerfulTableHeaderProps<'text'>}) => (string \| number) `| - |
 
 #### Text Emit
 
