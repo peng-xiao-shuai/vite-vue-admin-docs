@@ -23,7 +23,7 @@ powerful-table-demo/select-data
 :::
 
 ## 分页配置
-:::demo
+:::demo `pagination-property` 参数可传递所有 `el-pagination` 上的属性。需要注意的是，`total` 或者 `page-count` 必须传递一个否则会导致组件显示失败。
 
 powerful-table-demo/pagination
 
