@@ -47,6 +47,7 @@
 <script setup lang="ts">
 import { reactive, ref, computed, getCurrentInstance } from 'vue';
 import { CaretTop } from '@element-plus/icons-vue';
+import { useData } from 'vitepress';
 import { useClipboard } from '@vueuse/core';
 
 const vm = getCurrentInstance()!;
@@ -108,8 +109,18 @@ const operateList = reactive([
   },
 ]);
 
+const { site } = useData();
 const handleBtnClick = (e: typeof operateList[0]) => {
   switch (e.type) {
+    case 'edit':
+      window.open(
+        'https://github.com/peng-xiao-shuai' +
+          site.value.base +
+          'edit/main/examples/' +
+          props.path +
+          '.vue'
+      );
+      break;
     case 'copy':
       copyCode();
       break;
@@ -136,6 +147,9 @@ const handleBtnClick = (e: typeof operateList[0]) => {
     i {
       display: inline-block;
       margin: 0 8px;
+      &:hover {
+        color: var(--text-color);
+      }
     }
 
     i:last-of-type {
