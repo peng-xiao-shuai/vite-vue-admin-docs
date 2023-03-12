@@ -35,7 +35,6 @@ import { LangKey } from "el-plus-powerful-table-ts/es/locale/packages";
 
 const app = createApp(App);
 app.use(powerfulTable, {
-	btnSlot: 'all',
   // 更改组件默认语言
   locale: {
     en: {
@@ -60,7 +59,7 @@ app.mount("#app");
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | --- | ---- | ----- | ------ |
-| `btnSlot` | 顶部按钮插槽 `all \| ''` (全部显示) `left` (只显示左侧按钮)，`right` (只显示右侧按钮) | ^[enum]`'left' \| 'right' \| 'none'` | - |
+| `btnSlot`<el-tag type="danger" class="mx-1" effect="light" round>2.1.13</el-tag> | 顶部按钮插槽 `all \| ''` (全部显示) `left` (只显示左侧按钮)，`right` (只显示右侧按钮) | ^[enum]`'left' \| 'right' \| 'none'` | - |
 | `locale` | 内部部分文字语言 | `LangPackages` | <a href='https://github.com/peng-xiao-shuai/el-plus-powerful-table/blob/master-ts/packages/locale/packages.ts'>源码 `package/locale/packages` 文件中 `langPackages` 变量</a> |
 
 ## 属性
@@ -106,7 +105,7 @@ app.mount("#app");
 
 | 参数 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | --- | ------ |
-| `btnSlot` | 是否启用顶部按钮插槽 `all / ''(全部显示)`，`left(只显示左侧按钮)`，`right(只显示右侧按钮)` | ^[enum]`'left' \| 'right' \| 'none'` | - |
+| `btnSlot`<el-tag type="danger" class="mx-1" effect="light" round>2.1.13</el-tag> | 是否启用顶部按钮插槽 `all / ''(全部显示)`，`left(只显示左侧按钮)`，`right(只显示右侧按钮)` | ^[enum]`'left' \| 'right' \| 'none'` | - |
 | `btnList` | 左侧按钮配置 | ^[array]`BtnList[]` | - | - |
 
 #### BtnList
@@ -359,8 +358,8 @@ data: setData<'image', any>({
 ## 插槽
 | 插槽名 | 说明 |
 | ----- | ----- |
-| `btn-left` | 表格顶部左侧按钮 (`btnSlot` 需等于 `all` or `left`) |
-| `btn-right` | 表格顶部右侧按钮 (`btnSlot` 需等于 `all` or `right`)  |
+| `btn-left` | 表格顶部左侧按钮 |
+| `btn-right` | 表格顶部右侧按钮 |
 | `empty` | 表格内数据为空时内容 |
 | `refresh` | 刷新 |
 | `[slotName]` | 表格内自定义的插槽名称 |

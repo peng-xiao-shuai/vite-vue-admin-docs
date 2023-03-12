@@ -16,14 +16,14 @@
     "@types/node": "*",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
-    "sass": "^1.58.1",
+    "sass": "^1.59.2",
     "vite": "^4.1.4",
     "vitepress": "1.0.0-alpha.45"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.0.10",
-    "el-plus-powerful-table-ts": "2.1.9",
-    "element-plus": "^2.2.30",
+    "@element-plus/icons-vue": "^2.1.0",
+    "el-plus-powerful-table-ts": "2.1.13",
+    "element-plus": "^2.2.36",
     "markdown-it": "^13.0.1",
     "markdown-it-container": "^3.0.0",
     "prism-theme-vars": "^0.2.4",
