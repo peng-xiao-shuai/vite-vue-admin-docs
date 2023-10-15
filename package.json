@@ -4,30 +4,31 @@
   "private": true,
   "author": "peng-xiao-shuai",
   "license": "MIT",
+  "type": "module",
   "repository": "https://github.com/peng-xiao-shuai/vite-vue-admin-dosc",
   "scripts": {
-    "dev": "vitepress dev . --optimizeDeps",
+    "dev": "vitepress dev . --force",
     "build": "vitepress build .",
     "serve": "vitepress serve .",
     "gitBuild": "vitepress build ."
   },
   "devDependencies": {
-    "@types/markdown-it": "^12.2.3",
-    "@types/node": "*",
+    "@types/markdown-it": "^13.0.2",
+    "@types/node": "^20.8.5",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
-    "sass": "^1.59.2",
-    "vite": "^4.1.4",
-    "vitepress": "1.0.0-alpha.45"
+    "sass": "^1.69.3",
+    "vite": "^4.4.11",
+    "vitepress": "1.0.0-rc.21"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
-    "el-plus-powerful-table-ts": "2.1.13",
-    "element-plus": "^2.2.36",
-    "markdown-it": "^13.0.1",
+    "el-plus-powerful-table-ts": "2.2.0",
+    "element-plus": "^2.4.0",
+    "markdown-it": "^13.0.2",
     "markdown-it-container": "^3.0.0",
     "prism-theme-vars": "^0.2.4",
     "prismjs": "^1.29.0",
-    "vue": "^3.2.47"
+    "vue": "^3.3.4"
   }
 }
