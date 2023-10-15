@@ -110,7 +110,7 @@ const operateList = reactive([
 ]);
 
 const { site } = useData();
-const handleBtnClick = (e: typeof operateList[0]) => {
+const handleBtnClick = (e: (typeof operateList)[0]) => {
   switch (e.type) {
     case 'edit':
       window.open(
@@ -158,7 +158,7 @@ const handleBtnClick = (e: typeof operateList[0]) => {
   }
 
   .code-box {
-    background: var(--vp-c-bg-alt);
+    background: var(--el-fill-color-light);
     padding: 10px;
     position: relative;
 
@@ -189,8 +189,9 @@ const handleBtnClick = (e: typeof operateList[0]) => {
     justify-content: center;
     border-top: 1px solid var(--border-color);
     height: 44px;
+    font-size: 14px;
     box-sizing: border-box;
-    background-color: var(--bg-color, #fff);
+    background-color: var(--el-bg-color);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     margin-top: -1px;

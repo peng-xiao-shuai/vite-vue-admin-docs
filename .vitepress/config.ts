@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress';
 import fs from 'fs';
 import path from 'path';
-import markdownIt from 'markdown-it';
 import mdContainer from 'markdown-it-container';
 import tableWrapper from '../utils/table-wrapper';
 import tooltip from '../utils/tooltip';
@@ -82,43 +81,43 @@ export default defineConfig({
           items: [
             {
               text: '介绍',
-              link: '/guide/',
+              link: '/zh-CN/guide/',
             },
             {
               text: '为什么使用 Vite',
-              link: '/guide/why',
+              link: '/zh-CN/guide/why',
             },
             {
               text: '开始',
-              link: '/guide/start',
+              link: '/zh-CN/guide/start',
             },
-            {
-              text: '使用插件',
-              link: '/guide/using-plugins',
-            },
+            // {
+            //   text: '使用插件',
+            //   link: '/guide/using-plugins',
+            // },
           ],
         },
-        {
-          text: 'API',
-          items: [
-            {
-              text: '插件 API',
-              link: '/guide/api-plugin',
-            },
-            {
-              text: 'HMR API',
-              link: '/guide/api-hmr',
-            },
-            {
-              text: 'JavaScript API',
-              link: '/guide/api-javascript',
-            },
-            {
-              text: '配置参考',
-              link: '/config/',
-            },
-          ],
-        },
+        // {
+        //   text: 'API',
+        //   items: [
+        //     {
+        //       text: '插件 API',
+        //       link: '/guide/api-plugin',
+        //     },
+        //     {
+        //       text: 'HMR API',
+        //       link: '/guide/api-hmr',
+        //     },
+        //     {
+        //       text: 'JavaScript API',
+        //       link: '/guide/api-javascript',
+        //     },
+        //     {
+        //       text: '配置参考',
+        //       link: '/config/',
+        //     },
+        //   ],
+        // },
       ],
 
       '/zh-CN/component/': [

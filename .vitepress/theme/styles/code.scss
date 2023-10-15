@@ -3,6 +3,7 @@
 @use 'prism-theme-vars/marker.css';
 
 [class*='language-']:before {
+  content: '';
   font-family: var(--code-font-family);
 }
 
