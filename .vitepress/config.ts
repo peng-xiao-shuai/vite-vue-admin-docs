@@ -142,12 +142,11 @@ export default defineConfig({
     },
   },
   markdown: {
-    theme: { light: 'dark-plus', dark: 'dark-plus' },
+    theme: { light: 'github-light', dark: 'dark-plus' },
     config: (md) => {
       md.use(tableWrapper);
       md.use(tooltip);
-      // https://www.npmjs.com/package/markdown-it-container 自定义块级元素渲染
-      md.use(mdContainer, 'demo', {
+      const mdContainerOptions: mdContainer.ContainerOpts = {
         // 验证器
         validate: function (params) {
           return !!params.trim().match(/^demo\s*(.*)$/);
@@ -195,7 +194,11 @@ export default defineConfig({
             return '</Demo>';
           }
         },
-      });
+      };
+      /**
+       * @see https://www.npmjs.com/package/markdown-it-container 自定义块级元素渲染
+       */
+      md.use(mdContainer, 'demo', mdContainerOptions);
     },
   },
 });
