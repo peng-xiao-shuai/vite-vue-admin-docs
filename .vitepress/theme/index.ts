@@ -3,12 +3,13 @@ import 'element-plus/theme-chalk/src/index.scss';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'el-plus-powerful-table-ts/es/style.css';
 import './styles/index.scss';
-import { VPDemo, VPLayout, VPApiTyping } from '../components/index';
+import { VPDemo, VPLayout, VPApiTyping, VPTag } from '../components/index';
 export default {
   ...DefaultTheme,
   Layout: VPLayout,
   enhanceApp({ app, router, siteData }) {
     app.component('Demo', VPDemo);
+    app.component('Tag', VPTag);
     app.component('ApiTyping', VPApiTyping);
     if (typeof window !== 'undefined') {
       import('element-plus').then((module) => {
