@@ -28,7 +28,8 @@
         padding: 0.6em 1em;
         text-align: left;
         white-space: pre-wrap;
-        min-width: 100px;
+        max-width: 250px;
+        min-width: 130px;
       }
 
       thead tr:first-child th {
