@@ -1,7 +1,7 @@
 ---
 title: PowerfulTable
 lang: zh-CN
-outline: [1, 4]
+outline: [1, 5]
 ---
 
 # ElPlusPowerfulTableTs
@@ -10,26 +10,38 @@ outline: [1, 4]
 `el-plus-powerful-table` 的 `ts` 版本。[DEMO](https://peng-xiao-shuai.github.io/el-plus-powerful-table/)
 :::
 
-### 标签
+###### 标签
 
-> <el-tag type="danger" class="mx-1" effect="light" round>[版本号]</el-tag> 表示功能`废弃` <br/>
-> <el-tag type="success" class="mx-1" effect="light" round>[版本号]</el-tag> 表示功能`新增` <br/>
+> <tag type='danger' content=[版本号] /> 表示功能`废弃` <br/>
+> <tag type='success' content=[版本号] /> 表示功能`新增` <br/>
 
-### 语言
+###### 语言
 对于语言方面组件是默认使用 `英语` 因为 `element-plus` 默认是使用`英语`，不引用中文包的主要原因是避免增大体积。
 组件内部语言跟随 `element-plus`。 部分 提示文字 语言，组件内部也支持 `中、英` 文，如果你需要支持更多语言或者更改组件内部
 的语言，可以在 `use(PowerfulTable, { local: 您的语言变量 })` 替换。也可以参考我们提供的 `demo` 实现。
 
 ### 使用方法
 
-```js
+::: code-group
 
+```sh [npm]
 npm i el-plus-powerful-table-ts
-
 ```
 
-```js
-//main.ts
+```sh [yarn]
+yarn add el-plus-powerful-table-ts
+```
+
+```sh [pnpm]
+pnpm add el-plus-powerful-table-ts
+```
+
+:::
+
+::: code-group
+
+
+```ts [main.ts]
 import powerfulTable from "el-plus-powerful-table-ts/es";
 import { LangKey } from "el-plus-powerful-table-ts/es/locale/packages";
 
@@ -41,36 +53,44 @@ app.use(powerfulTable, {
       [LangKey.NoData]: '空',
       [LangKey.PackUp]: '收起',
       [LangKey.ReadFullText]: '展开阅读全文',
+      // ...
     },
     'zh-cn': {
       [LangKey.NoData]: '空',
       [LangKey.PackUp]: '收起',
       [LangKey.ReadFullText]: '展开阅读全文',
+      // ...
     },
   },
 });
 app.mount("#app");
-
-//*.vue
-<powerful-table :list="list" :header="header"></powerful-table>
 ```
 
-## 全局参数通过 `use` 注入 (优先级小于局部配置)
+```vue [app.vue]
+<powerful-table :list="list" :header="header" />
+```
 
-| 参数 | 说明 | TS类型 | 默认值 |
+:::
+
+## Config Attributes
+> 通过 `app.use` 注入 (优先级小于局部配置)
+
+| 属性名 | 说明 | TS类型 | 默认值 |
 | --- | ---- | ----- | ------ |
-| `btnSlot`<el-tag type="danger" class="mx-1" effect="light" round>2.1.13</el-tag> | 顶部按钮插槽 `all \| ''` (全部显示) `left` (只显示左侧按钮)，`right` (只显示右侧按钮) | ^[enum]`'left' \| 'right' \| 'none'` | - |
-| `locale` | 内部部分文字语言 | `LangPackages` | <a href='https://github.com/peng-xiao-shuai/el-plus-powerful-table/blob/master-ts/packages/locale/packages.ts'>源码 `package/locale/packages` 文件中 `langPackages` 变量</a> |
+| `locale` | 内部部分文字语言 [**查看可选值**](https://github.com/peng-xiao-shuai/el-plus-powerful-table/blob/master-ts/packages/locale/packages.ts) | `LangPackages` | - |
+| `listRequest`<tag type='success' content='2.2.0' /> | 列表请求，具体属性查看下方详情 | ^[object]`InjectProps['listRequest']` | - |
+| `emptyElement`<tag type='success' content='2.2.0' />  | 列表数据为空时渲染的组件 | `Component` | - |
 
-## 属性
-| 参数 | 说明 | TS类型 | 默认值 |
+## Attributes
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ---- | ------ |
-| `size` | 组件大小 | ^[string]`'medium' \| 'small' \| 'mini'` | `small` |
+| `size` | 组件大小（默认跟随 `element-plus`） | ^[string]`'medium' \| 'small' \| 'mini'` | `small` |
 | `list` | 数据 | `array` | - |
 | `header` | 表格头部配置 | ^[array]`PowerfulTableHeader<Row = any>` | - |
 | `selectData` | 选中的数据 | `array` | - |
-| `selectCompare` | 选中数据和列表数据相比较的参数`[0]选中数据参数，[1]列表数据参数` | ^[array]`string[]` | `['id', 'id']` |
+| `selectCompare` | 选中数据和列表数据相比较的参数`[0]选中数据属性名，[1]列表数据属性名` | ^[array]`string[]` | `['id', 'id']` |
 | `isSelect` | 是否显示多选 | `boolean` | `false` |
+| `listRequest`<tag type='success' content='2.2.0' /> | 列表请求 | ^[object]`InjectProps['listRequest'] & { listApi: (params: object) => Promise; listQuery?: object }` | - |
 | `selectable` | 当前行是否可以选中 | ^[function]`(row: Row, index: number) => boolean` | - |
 | `isPagination` | 是否显示分页器 | `boolean` | `false` |
 | `operateData` | 批量操作 | ^[object]`PowerfulTableOperateData` | - |
@@ -79,49 +99,68 @@ app.mount("#app");
 | `paginationProperty` | 分页器组件扩展字段 | ^[object]`Partial<PaginationProps>` | - |
 | `property` | 表格组件扩展字段 | ^[object]`Partial<TableProps<Row>>` | - |
 
-### OperateData（批量操作配置）
+### ListRequest <tag type='success' content='2.2.0' />
+::: tip
+[**使用方式**](https://peng-xiao-shuai.github.io/vite-vue-admin-docs/zh-CN/component/powerful-table-demo.html#传递-api-用法)
+:::
 
-:::tip 提示
+| 属性名 | 说明 | TS类型 | 默认值 |
+| ---- | ---- | ---- | ----- |
+| `pageNoKey` | 页数 `key` | `string` | `'pageNo'` |
+| `pageSizeKey` | 条数 `key` | `string` | `'pageSize'` |
+| `responseKey` | 返回值 `key`，多层数据结构使用 `.` 连接 | `string` | `'data.result'` |
+| `totalKey` | 总条数 `key` | `string` | `'total'` |
+| `listsKey` | 数据 `key` | `string` | `'rows'` |
+
+**当使用组件传递 `ListRequest` 时（非全局注入），格外新增 `2` 个属性**
+| 属性名 | 说明 | TS类型 | 默认值 |
+| ---- | ---- | ---- | ----- |
+| `listQuery` | 请求格外参数 | `object` | `{}` |
+| `listApi` | 请求接口 | ^[function]`(params: object) => any)` | - |
+
+### OperateData
+
+:::tip
 如果表格有 `header.props.type` 为 `input` 的则需要先填写该行数据，在选中该行，否则会出现获取不到 `input` 的值
 :::
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ---- | ----- |
 | `value` | 下拉选中值 | `string` | - |
 | `style` | 按钮样式 | `CSSProperties` | - |
 | `prop` | 批量操作后 `batchOperate` 返回的 `ids` 中的数据是根据指定 `prop` 返回数组 | `string` | `id` |
-| `btnProperty` | `el-button` 组件扩展字段 (支持 `el-button` 组件所有参数) | ^[object]`InstanceType<typeof import('element-plus')['ElSelect']>['$props']` | - |
-| `selectProperty` | `el-select` 组件扩展字段 (支持 `el-select` 组件所有参数) | ^[object]`Partial<ButtonProps>` | - |
+| `btnProperty` | `el-button` 组件扩展字段 (支持 `el-button` 组件所有属性名) | ^[object]`InstanceType<typeof import('element-plus')['ElSelect']>['$props']` | - |
+| `selectProperty` | `el-select` 组件扩展字段 (支持 `el-select` 组件所有属性名) | ^[object]`Partial<ButtonProps>` | - |
 | `operates` | 批量操作下拉框数据 | ^[array]`PowerfulTableLabelValue[]` | - |
 
-#### Operates
+###### OperateData Operates
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ---- | ------ |
 | `label` | 批量操作下拉框显示文字 | `string` | - |
 | `value` | 批量操作下拉框值 | `string` | - |
 
-### BtnConfig（顶部按钮配置）
+### BtnConfig
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | --- | ------ |
-| `btnSlot`<el-tag type="danger" class="mx-1" effect="light" round>2.1.13</el-tag> | 是否启用顶部按钮插槽 `all / ''(全部显示)`，`left(只显示左侧按钮)`，`right(只显示右侧按钮)` | ^[enum]`'left' \| 'right' \| 'none'` | - |
+| `btnRightList`| 右侧按钮配置 | ^[array]`BtnList[]` | - |
 | `btnList` | 左侧按钮配置 | ^[array]`BtnList[]` | - | - |
 
-#### BtnList
+###### BtnConfig BtnList
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | --- | ----- |
 | `style` | 样式 | `CSSProperties` | - |
-| `disabled` | 是否禁用 如果为 `true` 那么 `operateType` 的参数将会失效 | `boolean` | - |
+| `disabled` | 是否禁用 如果为 `true` 那么 `operateType` 的属性名将会失效 | `boolean` | - |
 | `operateType` | 操作类型：`none 默认` (不需要选择数据)，`single` (只能操作一条数据)，`batch` (批量操作数据(至少选择一条数据以上)) | ^[object]`'none' \| 'single' \| 'batch'` | - |
 | `text` | 按钮文字 | `string` | - |
 | `effect` | 自定义数据将会在自定义事件 `btn-plus-change` 抛出 | `string` | - |
 | `showBtn` | 控制按钮显示隐藏 | ^[function / boolean]`(row: Row, index: number) => boolean \| boolean` | - |
 
-### Header（表格配置）
+### Header
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ---- | ------ |
 | `overflowTooltip` | 当内容过长被隐藏时显示 | `boolean` | `false` |
 | `label` | 显示的标题 | `string` | - |
@@ -135,11 +174,11 @@ app.mount("#app");
 | `defaultFilter` | 当前列默认是否过滤 `(isShowOrFilterColumn == 'filter' 时默认 true)` | `boolean` | `false` |
 | `isShowOrFilterColumn` | 右侧按钮选择列时是否显示（隐藏和筛选开关组件） | ^[string / boolean]`'show' \| 'filter' \| false` | - |
 | `props` | 单元格数据 | ^[object]`PowerfulTableHeaderProps<null, Row>[] \| PowerfulTableHeaderProps<null, Row>` | - |
-| `property` | `el-table-column` 组件扩展字段 (支持 `el-table-column` 组件所有参数) | ^[object]`Partial<TableColumnCtx<Row>>` | - |
+| `property` | `el-table-column` 组件扩展字段 (支持 `el-table-column` 组件所有属性名) | ^[object]`Partial<TableColumnCtx<Row>>` | - |
 
 #### Props
 
-| 参数 | 说 明 | TS类型 | 默认值 |
+| 属性名 | 说 明 | TS类型 | 默认值 |
 | ---- | ----- | ----- | ---- |
 | `prop` | 数据 `key` 值 | `string` | - |
 | `type` | 数据类型 | ^[enum]`'image' \| 'text' \| 'switch' \| 'btn' \| 'video' \| 'input' \| 'iconfont' \| 'tag' \| 'rate' \| 'href' \| 'slot'`| `'text'` |
@@ -156,12 +195,12 @@ app.mount("#app");
 
 ##### Filters
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ------ |
 | `key` | 单元格里的数据 | `string` | - |
 | `value` | 需要替换的值 | `string` | - |
 
-### Data 类型
+##### Data
 ``` js
 // ...
 data: setData<'image', any>({
@@ -180,29 +219,29 @@ data: setData<'image', any>({
 :::tip
 内部组件中的 `Emit` 事件将会抛出在 `component-emit` 上。具体内部组件中有哪些事件返回什么参数，将会在下面文档详细介绍。
 :::
-#### Type = `'text'`（默认）
+##### Type is Text（default）
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ------ |
 | `line` | 超出多少的行数使用 `...` 代替 | `number` | `3` |
 | `develop` | 是否显示 `“展开 / 收起”` 操作按钮 | `boolean` | `false` |
 | `formatting` | 自定义当前单元格数据文本。`props` 为 `header` 配置的当前 `props` 值 | ^[function]`({row: Row, index: number, props: PowerfulTableHeaderProps<'text'>}) => (string \| number) `| - |
 
-#### Text Emit
+###### Text Emit
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
 | `click` | 点击触发 | ^[function]`{row: Row, index: number, prop: string, event: Event}` |
 
 
-#### Type = `'image'`（图片）
+##### Type is Image
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ----- | ------ |
 | `style` | 图片自定义样式 | `CSSProperties`  | - |
-| `property` | 属性扩展字段 (支持 `el-image` 组件所有参数) | ^[object / function]`Partial<ImageProp> \| (row: Row, index: number, props: PowerfulTableHeaderProps<'image', Row>) => Partial<ImageProp>` | - |
+| `property` | 属性扩展字段 (支持 `el-image` 组件所有属性名) | ^[object / function]`Partial<ImageProp> \| (row: Row, index: number, props: PowerfulTableHeaderProps<'image', Row>) => Partial<ImageProp>` | - |
 
-#### Image Emit
+###### Image Emit
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -211,43 +250,44 @@ data: setData<'image', any>({
 | `switch` | 图片加载成功触发 | `index: number` |
 | `close` | 图片加载成功触发 | - |
 
-#### Type = `'btn'`（按钮）
+##### Type is Btn
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ----- | ---- |
 | `tip` | 提示文字 | `string` | - |
 | `text` | 按钮文字 | `string` | - |
 | `style` | 按钮样式 | `CSSProperties` | - |
 | `showBtn` | 控制按钮显示隐藏 | ^[function]`(row: Row, index: number) => void / boolean` | - |
 | `beforeClick` | 点击前事件, `props(当前配置的props) btnIndex(按钮下标) resolve(回调函数，传递boolean)` | ^[function]`({row, index, props, btnIndex, params}, resolve) => void`| - |
+| `click`<tag type='success' content='2.2.0' /> | 点击事件, 传入 `click` 时 `beforeClick` 失效 | ^[function]`({props: PowerfulTableHeaderProps<'btn'>; params: any; row: Row; index: number}) => void`| - |
 | `params` | 自定义数据 | `any` | - |
 | `isMore` | 是否更多 当 `data` 是二维数组时有效 | `boolean` | `false` |
-| `property` | 属性扩展字段 (支持 `el-button` 组件所有参数) | ^[object / function]`Partial<ButtonProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'btn', Row> }) => Partial<ButtonProp>` | - |
+| `property` | 属性扩展字段 (支持 `el-button` 组件所有属性名) | ^[object / function]`Partial<ButtonProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'btn', Row> }) => Partial<ButtonProp>` | - |
 | `tipProperty` | 属性扩展字段 | ^[object]`Partial<ElTooltipProps>` | - |
 
-#### Type = `'switch'`（开关）
+##### Type is Switch
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ----- |
 | `style` | 开关自定义样式 | `CSSProperties` | - |
-| `property` | 属性扩展字段 (支持 `el-switch` 组件所有参数) | ^[object / function]`Partial<SwitchProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'switch', Row> }) => Partial<SwitchProp>` | - |
+| `property` | 属性扩展字段 (支持 `el-switch` 组件所有属性名) | ^[object / function]`Partial<SwitchProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'switch', Row> }) => Partial<SwitchProp>` | - |
 
-#### Switch Emit
+###### Switch Emit
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
 | `change` | `switch` 状态发生变化时的回调函数 | `val` 新状态的值 |
 
-#### Type = `'input | textarea'`（输入框）
+##### Type is Input or Textarea
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ------ |
 | `style` | 输入框样式 | `CSSProperties` | - |
 | `slot` | 输入框前置或后置 | ^[enum]`'prepend' \| 'append' \| 'prefix' \| 'suffix'` | - |
 | `symbol` | 文字或者符号在插槽中显示 | `string` | - |
-| `property` | 属性扩展字段 (支持 `el-input` 组件所有参数) | ^[object / function]`Partial<InputProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'input', Row> }) => Partial<InputProp>` | - |
+| `property` | 属性扩展字段 (支持 `el-input` 组件所有属性名) | ^[object / function]`Partial<InputProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'input', Row> }) => Partial<InputProp>` | - |
 
-#### Input Emit
+###### Input Emit
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -257,64 +297,72 @@ data: setData<'image', any>({
 | `input` | 在 `Input` 值改变时触发 | `value: string \| number` |
 | `clear` | 点击由 `clearable` 属性生成的清空按钮时触发 | - |
 
-#### Type = `'video'`（视频）
+##### Type is Video
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | `style`  | 样式 | `CSSProperties` | - |
-| `property` | 属性扩展字段 (支持 `video` 标签所有参数) | ^[object / function]`Partial<VideoHTMLAttributes> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'video', Row> }) => Partial<VideoHTMLAttributes>` | - |
+| `property` | 属性扩展字段 (支持 `video` 标签所有属性名) | ^[object / function]`Partial<VideoHTMLAttributes> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'video', Row> }) => Partial<VideoHTMLAttributes>` | - |
 
-#### Type = `'iconfont'`（图标）
+##### Type is Iconfont
 
-| 参数  | 说明           | TS类型           | 默认值 |
+| 属性名  | 说明           | TS类型           | 默认值 |
 | ----- | -------------- | -------------- | ------ |
 | `class` | 样式类 | `string \| string[]` | - |
 | `style` | 图标自定义样式 | `CSSProperties` | - |
 
-#### Iconfont Emit
+###### Iconfont Emit
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
 | `click` | 点击触发 | ^[object]`{row: Row, index: number, prop: string, event: Event}` |
 
-#### Type = `'rate'`（评分）
+##### Type is Rate
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ------ |
 | `style` | 样式 | `CSSProperties` | - | - |
-| `property` | 属性扩展字段 (支持 `el-rate` 组件所有参数) | ^[object / function]`Partial<RateProps> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'rate', Row> }) => Partial<RateProps>`  | - | - |
+| `property` | 属性扩展字段 (支持 `el-rate` 组件所有属性名) | ^[object / function]`Partial<RateProps> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'rate', Row> }) => Partial<RateProps>`  | - | - |
 
-#### Rate Emit
+###### Rate Emit
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
-| `click` <el-tag type="danger" class="mx-1" effect="light">2.1.5</el-tag> | 点击触发 | ^[object]`{row: Row, index: number, prop: string, event: Event}` |
 | `change` | 值改变触发 | `val` 改变后的值 |
 
-#### Type = `'href'`（超链接）
+##### Type is Href
 
-| 参数 | 说明 | TS类型 | 默认值 |
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ---- | ----- |
 | `style` | 自定义样式 | `CSSProperties` | - |
 | `target` | 跳转类型 | ^[enum]`'_self' \| '_blank' \| '_parent' \| '_top'` | `'\_blank'` |
 | `text` | 所显示的文本 | ^[string / function]`(row: Row) => string` | - |
-| `property` | 属性扩展字段 (支持 `el-link` 组件所有参数) | ^[object / function]`Partial<LinkProps> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'href', Row> }) => Partial<LinkProps>`  | - |
+| `property` | 属性扩展字段 (支持 `el-link` 组件所有属性名) | ^[object / function]`Partial<LinkProps> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'href', Row> }) => Partial<LinkProps>`  | - |
 
-#### Type = `'slot'`（插槽）
+##### Type is Slot
+::: code-group
 
-```js
-//示例
-{
-  label: "slot（插槽）", //显示的标题
-  props: [
-    {
-      type: "slot",
-      slotName: "A",
-    },
-  ],
+
+``` ts [index-data.ts]
+import type { PowerfulTableHeader } from 'el-powerful-table-ts/es/typings'
+
+interface Lists {
+  id: 1
 }
+export const header: PowerfulTableHeader<Lists>[] = [
+  {
+    label: "slot（插槽）", //显示的标题
+    props: [
+      {
+        type: "slot",
+        slotName: "A",
+      },
+    ],
+  }
+]
 ```
-``` html
+
+``` vue [app.vue]
 <powerful-table>
   <template #A="{ row,index }">
     <div>
@@ -327,22 +375,24 @@ data: setData<'image', any>({
 </powerful-table>
 ```
 
-#### Type = `'tag'`（标签）
+:::
 
-| 参数 | 说明 | TS类型 | 默认值 |
+##### Type is Tag
+
+| 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | ---- | ----- | ----- |
 | `color` | 背景颜色，返回颜色值 | ^[function]`(row,tag) => string` | - |
 | `number` | 需要显示前多少个 | `number` | `3` |
-| `property` | 属性扩展字段 (支持 `el-tag` 组件所有参数) | ^[object / function]`Partial<TagProps> \| ({ row, index, props }) => Partial<TagProps>` | - |
+| `property` | 属性扩展字段 (支持 `el-tag` 组件所有属性名) | ^[object / function]`Partial<TagProps> \| ({ row, index, props }) => Partial<TagProps>` | - |
 
-#### Tag Emit
+###### Tag Emit
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
 | `click` | 点击触发 | ^[object]`{row: Row, index: number, prop: string, event: Event}` |
 | `close` | 关闭 Tag 时触发的事件 | - |
 
-## 事件
+## Emits
 
 | 事件名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -355,7 +405,7 @@ data: setData<'image', any>({
 | `row-click` | 行点击事件 | ^[function]`({row: Row, column: any, event: Event})` |
 | `component-event` | 内部组件事件 | ^[function]`({componentName: keyof _TYPE \| 'filter', eventType: string}, ...arg: any)` |
 
-## 插槽
+## Slots
 | 插槽名 | 说明 |
 | ----- | ----- |
 | `btn-left` | 表格顶部左侧按钮 |
@@ -364,3 +414,17 @@ data: setData<'image', any>({
 | `refresh` | 刷新 |
 | `[slotName]` | 表格内自定义的插槽名称 |
 | `[headerSlotName]` | 表格列头内自定义的插槽名称 |
+
+## Expose
+| 属性名 | 说明 | 类型 |
+| ----- | ----- | ----- |
+| `$slots` | 所传递的插槽名称 | ^[object]`PowerfulTableExpose['$slots']` |
+| `$attrs` | 所传递的属性并且非 `props` 定义的属性名. [文档](https://cn.vuejs.org/guide/components/attrs.html#attribute-inheritance) | ^[object]`PowerfulTableExpose['$attrs']` |
+| `$refs` | 表格 `Ref` 实例 | ^[object]`PowerfulTableExpose['$refs']` |
+| `headerLists` | 过滤隐藏后的列 | ^[array]`PowerfulTableExpose['headerLists']` |
+| `powerfulTableData` | 内置数据也就是 vue2 中的 data | ^[object]`PowerfulTableExpose['powerfulTableData']` |
+| `stateData` | 状态数据 | ^[object]`PowerfulTableExpose['stateData']` |
+| `resetList` | 重置数据发送请求 | ^[function]`PowerfulTableExpose['resetList']` |
+| `getListData` | 重新发送请求 | ^[function]`PowerfulTableExpose['getListData']` |
+| `handleSelectionChange` | 添加选中行 | ^[function]`PowerfulTableExpose['handleSelectionChange']` |
+| `anewRender` | 重新计算表格布局位置 | ^[function]`PowerfulTableExpose['anewRender']` |
