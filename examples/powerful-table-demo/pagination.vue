@@ -1,5 +1,5 @@
 <template>
-  <powerful-table
+  <PowerfulTable
     :list="list"
     :header="headers"
     :pagination-property="{
@@ -8,7 +8,7 @@
     }"
     @size-change="getList"
   >
-  </powerful-table>
+  </PowerfulTable>
 </template>
 
 <script lang="ts" setup>
@@ -28,7 +28,7 @@ const getList = (e?: { params: any; select: any }) => {
   }
 
   setTimeout(() => {
-    list.value = lists.value.filter((item, index) => {
+    list.value = lists.filter((item, index) => {
       return (
         index >= (listQuery.pageNum - 1) * listQuery.pageSize &&
         index < listQuery.pageNum * listQuery.pageSize

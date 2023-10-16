@@ -1,5 +1,8 @@
-import { toRefs, reactive, onMounted, markRaw } from 'vue';
+import { toRefs, ref, onMounted, markRaw, onBeforeMount } from 'vue';
 import type { PowerfulTableHeader } from 'el-plus-powerful-table-ts';
+import { ElMessageBox } from 'element-plus/es';
+import { Edit } from '@element-plus/icons-vue';
+import { setData } from 'el-plus-powerful-table-ts/es';
 
 type Lists = {
   id?: number;
@@ -94,258 +97,235 @@ const lists: Lists[] = [
 ];
 
 const useBasicTableData = () => {
-  const state: {
-    headers: PowerfulTableHeader<Lists>[];
-    lists: Lists[];
-  } = reactive({
-    headers: [],
-    lists: [],
-  });
-  onMounted(() => {
-    Promise.all([
-      import('element-plus/es'),
-      import('@element-plus/icons-vue'),
-      import('el-plus-powerful-table-ts/es'),
-    ]).then((res) => {
-      const { ElMessageBox } = res[0];
-      const { Edit } = res[1];
-      const { setData } = res[2];
-      state.headers = [
+  const headers = ref<PowerfulTableHeader<Lists>[]>([
+    {
+      label: '编号', //显示的标题
+      width: 60,
+      props: {
+        prop: 'id',
+      },
+    },
+    {
+      label: '制作厂', //显示的名称
+      headerAlign: 'left',
+      props: [
         {
-          label: '编号', //显示的标题
-          width: 60,
-          props: {
-            prop: 'id',
+          type: 'href',
+          prop: 'manufacturerHref',
+          text: '厂商：',
+          data: setData<'href', Lists>({
+            text: (row: any) => row.manufacturer,
+            property: {
+              underline: true,
+            },
+          }),
+        },
+        {
+          prop: 'icon',
+          type: 'iconfont',
+          text: '车标：',
+          data: setData<'iconfont', Lists>({
+            class: 'viteIcon',
+            style: {
+              height: '40px',
+              lineHeight: '40px',
+              fontSize: '40px',
+            },
+          }),
+        },
+      ],
+    },
+    {
+      label: '名称', //显示的名称
+      headerAlign: 'left',
+      width: 200,
+      props: [
+        {
+          text: '品牌：',
+          prop: 'brand',
+          render: (h, row) =>
+            h(
+              'b',
+              `${row.brand}（${{ Audi: '奥迪', BMW: '宝马' }[row.brand!]})`
+            ),
+        },
+        {
+          type: 'href',
+          prop: 'href',
+          text: '型号：',
+          data: setData<'href', Lists>({
+            text: (row) => row.name!,
+          }),
+        },
+      ],
+    },
+    {
+      label: '图片', //显示的标题
+      props: [
+        {
+          type: 'image',
+          prop: 'imageUrl',
+          data: setData<'image', Lists>({
+            style: {
+              borderRadius: '10px',
+            },
+            property: ({ row, index, props }) => {
+              return {
+                // src: 'https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF',
+              };
+            },
+          }),
+        },
+      ],
+    },
+    {
+      label: '售价', //显示的标题
+      props: [
+        {
+          text: '收藏：',
+          prop: 'switchVal',
+          type: 'switch',
+          data: setData<'switch', Lists>({
+            property: {
+              inactiveValue: 0,
+              activeValue: 1,
+            },
+          }),
+        },
+        {
+          prop: 'price',
+          type: 'input',
+          data: setData<'input', Lists>({
+            slot: 'append',
+            symbol: '万',
+            style: { width: '100%' },
+            property({ row, index, props }) {
+              return {
+                placeholder: '售价',
+              };
+            },
+          }),
+        },
+      ],
+    },
+    {
+      label: '发动机名称', // 此标题不会显示，因为配置了 自定义表头 headerSlotName
+      width: 200,
+      headerAlign: 'left',
+      isShowOrFilterColumn: false,
+      props: [
+        {
+          type: 'text',
+          prop: 'engine',
+          text: '发动机：',
+          filters: (row) => row.engine!,
+        },
+        {
+          type: 'rate',
+          prop: 'rate',
+          text: '评 分：',
+          data: setData<'rate', Lists>({
+            property: {
+              disabled: false,
+            },
+          }),
+        },
+      ],
+    },
+    {
+      label: '宣传视频', //显示的标题
+      width: 200,
+      isShowOrFilterColumn: 'show',
+      defaultShow: false,
+      props: {
+        prop: 'videoUrl',
+        type: 'video',
+        data: setData<'video', Lists>({
+          style: {
+            width: '100%',
+            height: '117px',
+            borderRadius: '10px',
+            overflow: 'hidden',
+            border: '1px solid #ccc',
           },
-        },
+          property: ({ row }) => ({
+            poster: row.imageUrl,
+            controls: true,
+          }),
+        }),
+      },
+    },
+    {
+      label: '简介', //显示的标题
+      width: '300px',
+      isShowOrFilterColumn: 'filter',
+      props: [
         {
-          label: '制作厂', //显示的名称
-          headerAlign: 'left',
-          props: [
-            {
-              type: 'href',
-              prop: 'manufacturerHref',
-              text: '厂商：',
-              data: setData<'href', Lists>({
-                text: (row: any) => row.manufacturer,
-                property: {
-                  underline: true,
-                },
-              }),
-            },
-            {
-              prop: 'icon',
-              type: 'iconfont',
-              text: '车标：',
-              data: setData<'iconfont', Lists>({
-                class: 'viteIcon',
-                style: {
-                  height: '40px',
-                  lineHeight: '40px',
-                  fontSize: '40px',
-                },
-              }),
-            },
-          ],
+          prop: 'content',
+          type: 'text',
+          data: setData<'text', Lists>({
+            develop: true,
+            line: 2,
+          }),
         },
+      ],
+    },
+    {
+      label: '操作', //显示的标题
+      width: 250,
+      fixed: 'right',
+      isShowOrFilterColumn: false,
+      props: [
         {
-          label: '名称', //显示的名称
-          headerAlign: 'left',
-          width: 200,
-          props: [
+          type: 'btn',
+          prop: 'btn',
+          data: setData<'btn', Lists>([
             {
-              text: '品牌：',
-              prop: 'brand',
-              render: (h, row) =>
-                h(
-                  'b',
-                  `${row.brand}（${{ Audi: '奥迪', BMW: '宝马' }[row.brand!]})`
-                ),
-            },
-            {
-              type: 'href',
-              prop: 'href',
-              text: '型号：',
-              data: setData<'href', Lists>({
-                text: (row) => row.name!,
-              }),
-            },
-          ],
-        },
-        {
-          label: '图片', //显示的标题
-          props: [
-            {
-              type: 'image',
-              prop: 'imageUrl',
-              data: setData<'image', Lists>({
-                style: {
-                  borderRadius: '10px',
-                },
-                property: ({ row, index, props }) => {
-                  return {
-                    // src: 'https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF',
-                  };
-                },
-              }),
-            },
-          ],
-        },
-        {
-          label: '售价', //显示的标题
-          props: [
-            {
-              text: '收藏：',
-              prop: 'switchVal',
-              type: 'switch',
-              data: setData<'switch', Lists>({
-                property: {
-                  inactiveValue: 0,
-                  activeValue: 1,
-                },
-              }),
-            },
-            {
-              prop: 'price',
-              type: 'input',
-              data: setData<'input', Lists>({
-                slot: 'append',
-                symbol: '万',
-                style: { width: '100%' },
-                property({ row, index, props }) {
-                  return {
-                    placeholder: '售价',
-                  };
-                },
-              }),
-            },
-          ],
-        },
-        {
-          label: '发动机名称', // 此标题不会显示，因为配置了 自定义表头 headerSlotName
-          width: 200,
-          headerAlign: 'left',
-          isShowOrFilterColumn: false,
-          props: [
-            {
-              type: 'text',
-              prop: 'engine',
-              text: '发动机：',
-              filters: (row) => row.engine!,
-            },
-            {
-              type: 'rate',
-              prop: 'rate',
-              text: '评 分：',
-              data: setData<'rate', Lists>({
-                property: {
-                  disabled: false,
-                },
-              }),
-            },
-          ],
-        },
-        {
-          label: '宣传视频', //显示的标题
-          width: 200,
-          isShowOrFilterColumn: 'show',
-          defaultShow: false,
-          props: {
-            prop: 'videoUrl',
-            type: 'video',
-            data: setData<'video', Lists>({
-              style: {
-                width: '100%',
-                height: '117px',
-                borderRadius: '10px',
-                overflow: 'hidden',
-                border: '1px solid #ccc',
+              tip: '编辑按钮',
+              params: {
+                emit: 'update',
               },
-              property: ({ row }) => ({
-                poster: row.imageUrl,
-                controls: true,
-              }),
-            }),
-          },
-        },
-        {
-          label: '简介', //显示的标题
-          width: '300px',
-          isShowOrFilterColumn: 'filter',
-          props: [
-            {
-              prop: 'content',
-              type: 'text',
-              data: setData<'text', Lists>({
-                develop: true,
-                line: 2,
-              }),
+              beforeClick({ row, index, btnIndex, props, params }, resolve) {
+                ElMessageBox.confirm('正在进行修改操作，确认要修改？', '提示', {
+                  confirmButtonText: 'OK',
+                  cancelButtonText: 'Cancel',
+                  type: 'warning',
+                }).then(() => {
+                  resolve(true);
+                });
+              },
+              property: {
+                type: 'info',
+                icon: markRaw(Edit),
+              },
             },
-          ],
-        },
-        {
-          label: '操作', //显示的标题
-          width: 250,
-          fixed: 'right',
-          isShowOrFilterColumn: false,
-          props: [
-            {
-              type: 'btn',
-              prop: 'btn',
-              data: setData<'btn', Lists>([
-                {
-                  tip: '编辑按钮',
-                  params: {
-                    emit: 'update',
-                  },
-                  beforeClick(
-                    { row, index, btnIndex, props, params },
-                    resolve
-                  ) {
-                    ElMessageBox.confirm(
-                      '正在进行修改操作，确认要修改？',
-                      '提示',
-                      {
-                        confirmButtonText: 'OK',
-                        cancelButtonText: 'Cancel',
-                        type: 'warning',
-                      }
-                    ).then(() => {
-                      resolve(true);
-                    });
-                  },
-                  property: {
-                    type: 'info',
-                    icon: markRaw(Edit),
-                  },
+            [
+              {
+                text: '更多',
+                isMore: true,
+                property: {
+                  icon: markRaw(Edit),
                 },
-                [
-                  {
-                    text: '更多',
-                    isMore: true,
-                    property: {
-                      icon: markRaw(Edit),
-                    },
-                  },
-                  {
-                    text: '删除',
-                    params: 'remove',
-                    property: {
-                      type: 'danger',
-                      icon: markRaw(Edit),
-                    },
-                  },
-                ],
-              ]),
-            },
-          ],
+              },
+              {
+                text: '删除',
+                params: 'remove',
+                property: {
+                  type: 'danger',
+                  icon: markRaw(Edit),
+                },
+              },
+            ],
+          ]),
         },
-      ];
-      state.lists = lists;
-    });
-  });
+      ],
+    },
+  ]);
 
-  return toRefs(state);
+  return {
+    lists,
+    headers,
+  };
 };
 
 export { useBasicTableData, Lists };
