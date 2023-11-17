@@ -8,6 +8,7 @@ export default defineConfig(async ({ mode }) => {
     server: {
       host: true,
     },
+    ssr: { noExternal: ['element-plus', 'el-plus-powerful-table-ts'] },
     build: {
       chunkSizeWarningLimit: 1024,
     },

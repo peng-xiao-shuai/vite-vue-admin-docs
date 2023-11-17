@@ -5,10 +5,7 @@
     <div class="code-operate">
       <!-- 效果 -->
       <div class="code-operate-demo">
-        <component
-          :is="formatPathDemos[path]"
-          v-if="formatPathDemos[path]"
-        ></component>
+        <component :is="demoDefault[path]" v-if="demoDefault[path]"></component>
       </div>
       <!-- 操作 -->
       <div class="code-operate-btn">
@@ -45,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed, getCurrentInstance } from 'vue';
+import { reactive, ref, getCurrentInstance, watch } from 'vue';
 import { CaretTop } from '@element-plus/icons-vue';
 import { useData } from 'vitepress';
 import { useClipboard } from '@vueuse/core';
@@ -60,17 +57,26 @@ const props = defineProps<{
   description?: string;
 }>();
 
-// 更改demos中key值
-const formatPathDemos = computed(() => {
-  const demos = {};
+const demoDefault = reactive({});
 
-  Object.keys(props.demos).forEach((key) => {
-    demos[key.replace('../../examples/', '').replace('.vue', '')] =
-      props.demos[key].default;
-  });
-
-  return demos;
-});
+watch(
+  props.demos,
+  () => {
+    Object.keys(props.demos).forEach((key) => {
+      setTimeout(async () => {
+        props.demos[key]().then((module) => {
+          Object.assign(demoDefault, {
+            [key.replace('../../examples/', '').replace('.vue', '')]:
+              module.default,
+          });
+        });
+      });
+    });
+  },
+  {
+    immediate: true,
+  }
+);
 
 const { copy, isSupported } = useClipboard({
   source: decodeURIComponent(props.rawSource),
