@@ -88,17 +88,17 @@ powerful-table-demo/basic-api
 
 :::
 
-## 回显选中
-:::demo `selectData` 回显选中数据，使用 `selectCompare` 控制根据 `data` 中哪个属性相比较。`selectCompare=['ID', 'id']`。 将 `selectData` 的数据中对象的 `ID` 属性和 `list` 中对象 `id` 属性相比较。**所有页选中的数据将会在 `size-change` 事件中返回。**
-
-powerful-table-demo/select-data
-
-:::
-
 ## 分页配置
 :::demo `pagination-property` 参数可传递所有 `el-pagination` 上的属性。需要注意的是，`total` 或者 `page-count` 必须传递一个否则会导致组件显示失败。
 
 powerful-table-demo/pagination
+
+:::
+
+## 回显选中
+:::demo `selectData` 回显选中数据，使用 `selectCompare` 控制根据 `data` 中哪个属性相比较。`selectCompare=['ID', 'id']`。 将 `selectData` 的数据中对象的 `ID` 属性和 `list` 中对象 `id` 属性相比较。**所有页选中的数据将会在 `size-change` 事件中返回。**
+
+powerful-table-demo/select-data
 
 :::
 
