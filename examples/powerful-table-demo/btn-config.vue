@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { BtnConfig } from 'el-plus-powerful-table-ts';
+import type { BtnConfig, Handlers } from 'el-plus-powerful-table-ts';
 import { markRaw, reactive } from 'vue';
-import { useBasicTableData } from './index';
+import { useBasicTableData, Lists } from './index';
 const { headers, lists } = useBasicTableData();
-let btnConfig: BtnConfig.Config;
-let btnChange: (e) => void;
+let btnChange: Handlers['btn-plus-change'];
+const btnConfig: BtnConfig.Config<Lists> = reactive({});
 
 Promise.all([
   import('element-plus/es'),
@@ -24,8 +24,7 @@ Promise.all([
 ]).then((res) => {
   const { ElMessageBox, ElMessage } = res[0];
   const { Delete, Edit, Grid, Plus, Refresh } = res[1];
-  btnConfig = reactive({
-    btnSlot: 'all',
+  Object.assign(btnConfig, {
     btnRightList: [
       {
         effect: 'refresh',
@@ -37,6 +36,7 @@ Promise.all([
       },
       {
         effect: 'columns',
+        tip: '列',
         property: {
           icon: markRaw(Grid),
         },
