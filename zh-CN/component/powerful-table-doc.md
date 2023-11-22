@@ -226,8 +226,9 @@ data: setData<'image', any>({
 | `line` | 超出多少的行数使用 `...` 代替 | `number` | `3` |
 | `develop` | 是否显示 `“展开 / 收起”` 操作按钮 | `boolean` | `false` |
 | `formatting` | 自定义当前单元格数据文本。`props` 为 `header` 配置的当前 `props` 值 | ^[function]`({row: Row, index: number, props: PowerfulTableHeaderProps<'text'>}) => (string \| number) `| - |
+| `on`<tag type='success' content=2.2.4 /> | 事件对象，接收下面 `Emit` 相应方法名称 | ^[object]`{click: ({row: Row, index: number, props: PowerfulTableHeaderProps<'text'>}, event: Event) => void}` | - |
 
-###### Text Emit
+###### Text Emit<tag type='danger' content=3.0.0 />/Event<tag type='success' content=2.2.4 />
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -240,8 +241,29 @@ data: setData<'image', any>({
 | ---- | ---- | ----- | ------ |
 | `style` | 图片自定义样式 | `CSSProperties`  | - |
 | `property` | 属性扩展字段 (支持 `el-image` 组件所有属性名) | ^[object / function]`Partial<ImageProp> \| (row: Row, index: number, props: PowerfulTableHeaderProps<'image', Row>) => Partial<ImageProp>` | - |
+| `on`<tag type='success' content=2.2.4 /> | 事件对象，接收下面 `Emit` 相应方法名称 | ^[object]`{[Image Emit 方法名]: ({row: Row, index: number, props: PowerfulTableHeaderProps<'image'>}, event: Event) => void}` | - |
 
-###### Image Emit
+``` ts
+// ...
+{
+    label: '图片', //显示的标题
+    props: [
+      {
+        type: 'image',
+        prop: 'imageUrl',
+        data: setData<'image', Lists>({
+          on: {
+            load: ({row, index, props}, evt) => {},
+            error: ({row, index, props}, evt) => {}
+          }
+        }),
+      },
+    ],
+  },
+// ...
+```
+
+###### Image Emit<tag type='danger' content=3.0.0 />/Event<tag type='success' content=2.2.4 />
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -271,8 +293,9 @@ data: setData<'image', any>({
 | ---- | --- | ------ | ----- |
 | `style` | 开关自定义样式 | `CSSProperties` | - |
 | `property` | 属性扩展字段 (支持 `el-switch` 组件所有属性名) | ^[object / function]`Partial<SwitchProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'switch', Row> }) => Partial<SwitchProp>` | - |
+| `on`<tag type='success' content=2.2.4 /> | 事件对象，接收下面 `Emit` 相应方法名称 | ^[object]`{[Switch Emit 方法名]: ({row: Row, index: number, props: PowerfulTableHeaderProps<'switch'>}, event: Event) => void}` | - |
 
-###### Switch Emit
+###### Switch Emit<tag type='danger' content=3.0.0 />/Event<tag type='success' content=2.2.4 />
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -286,8 +309,9 @@ data: setData<'image', any>({
 | `slot` | 输入框前置或后置 | ^[enum]`'prepend' \| 'append' \| 'prefix' \| 'suffix'` | - |
 | `symbol` | 文字或者符号在插槽中显示 | `string` | - |
 | `property` | 属性扩展字段 (支持 `el-input` 组件所有属性名) | ^[object / function]`Partial<InputProp> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'input', Row> }) => Partial<InputProp>` | - |
+| `on`<tag type='success' content=2.2.4 /> | 事件对象，接收下面 `Emit` 相应方法名称 | ^[object]`{[Input Emit 方法名]: ({row: Row, index: number, props: PowerfulTableHeaderProps<'input'>}, event: Event) => void}` | - |
 
-###### Input Emit
+###### Input Emit<tag type='danger' content=3.0.0 />/Event<tag type='success' content=2.2.4 />
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -303,6 +327,14 @@ data: setData<'image', any>({
 | ---- | ---- | ---- | ---- |
 | `style`  | 样式 | `CSSProperties` | - |
 | `property` | 属性扩展字段 (支持 `video` 标签所有属性名) | ^[object / function]`Partial<VideoHTMLAttributes> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'video', Row> }) => Partial<VideoHTMLAttributes>` | - |
+| `on`<tag type='success' content=2.2.4 /> | 事件对象，接收下面 `Emit` 相应方法名称 | ^[object]`{[Video Emit 方法名]: ({row: Row, index: number, props: PowerfulTableHeaderProps<'video'>}, event: Event) => void}` | - |
+
+###### Video Emit<tag type='danger' content=3.0.0 />/Event<tag type='success' content=2.2.4 />
+
+| 方法名 | 说明 | 类型 |
+| ------ | --- | ---- |
+| `play` | 点击触发 | ^[object]`{row: Row, index: number, prop: string, event: Event}` |
+| `pause` | 点击触发 | ^[object]`{row: Row, index: number, prop: string, event: Event}` |
 
 ##### Type is Iconfont
 
@@ -310,8 +342,9 @@ data: setData<'image', any>({
 | ----- | -------------- | -------------- | ------ |
 | `class` | 样式类 | `string \| string[]` | - |
 | `style` | 图标自定义样式 | `CSSProperties` | - |
+| `on`<tag type='success' content=2.2.4 /> | 事件对象，接收下面 `Emit` 相应方法名称 | ^[object]`{click: ({row: Row, index: number, props: PowerfulTableHeaderProps<'iconfont'>}, event: Event) => void}` | - |
 
-###### Iconfont Emit
+###### Iconfont Emit<tag type='danger' content=3.0.0 />/Event<tag type='success' content=2.2.4 />
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -323,8 +356,9 @@ data: setData<'image', any>({
 | ---- | --- | ------ | ------ |
 | `style` | 样式 | `CSSProperties` | - | - |
 | `property` | 属性扩展字段 (支持 `el-rate` 组件所有属性名) | ^[object / function]`Partial<RateProps> \| ({ row: Row, index: number, props: PowerfulTableHeaderProps<'rate', Row> }) => Partial<RateProps>`  | - | - |
+| `on`<tag type='success' content=2.2.4 /> | 事件对象，接收下面 `Emit` 相应方法名称 | ^[object]`{change: ({row: Row, index: number, props: PowerfulTableHeaderProps<'rate'>}, event: Event) => void}` | - |
 
-###### Rate Emit
+###### Rate Emit<tag type='danger' content=3.0.0 />/Event<tag type='success' content=2.2.4 />
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -385,7 +419,7 @@ export const header: PowerfulTableHeader<Lists>[] = [
 | `number` | 需要显示前多少个 | `number` | `3` |
 | `property` | 属性扩展字段 (支持 `el-tag` 组件所有属性名) | ^[object / function]`Partial<TagProps> \| ({ row, index, props }) => Partial<TagProps>` | - |
 
-###### Tag Emit
+###### Tag Emit<tag type='danger' content=3.0.0 />/Event<tag type='success' content=2.2.4 />
 
 | 方法名 | 说明 | 类型 |
 | ------ | --- | ---- |
@@ -415,12 +449,60 @@ export const header: PowerfulTableHeader<Lists>[] = [
 | `[slotName]` | 表格内自定义的插槽名称 |
 | `[headerSlotName]` | 表格列头内自定义的插槽名称 |
 
+## Utils<tag type='success' content=2.2.4 />
+| 函数名 | 说明 | TS类型 |
+| ----- | ----- | ----- |
+| `getType` | 获取变量类型 | ^[function]`getType: <T>(target: T) => string` |
+| `deepClone` | 深度克隆 | ^[function]`deepClone: <T>(target: T) => T` |
+| `isTypeProtect` | [类型保护](https://www.tslang.cn/docs/handbook/advanced-types.html) 搜索 "用户自定义的类型保护" | ^[function]`isTypeProtect: <T, P extends T>(obj: T, cb: (obj: T) => boolean) => obj is P` |
+| `setData` | 设置 `PowerfulTableHeaderProps` 类型下 `data` 数据，可以获得更好的类型提示 | ^[function]`setData: <T extends keyof _TYPE<L>, L = any>(data: _TYPE<L>[T]) => _TYPE<L>[T]` |
+
+::: code-group
+
+``` ts [index.ts]
+import { getType, deepClone,isTypeProtect, setData } from 'el-plus-powerful-table/es'
+import { log } from 'console'
+
+log(getType('1')) // 'String'
+log(getType(1)) // 'Number'
+log(getType({})) // 'Object'
+// ...
+
+const a = {a: 1, b: {a: 2, c: {a: 3}}}
+const b = deepClone(a)
+log(a === b) // false
+
+let c: number | []
+c += 1 // ts 报错
+if (isTypeProtect<typeof c, number>(c, (data) => typeof data === 'number')) {
+  c += 1 // 正常
+}
+
+const headers: PowerfulTableHeader<Lists>[] = [{
+  label: '图片',
+  props: [
+    {
+      type: 'image',
+      prop: 'imageUrl',
+      data: setData<'image', Lists>({
+        // 在这里输入的时候 idea 会提示有哪些属性
+      }),
+    },
+  ],
+}]
+
+```
+
+:::
+
 ## Expose
 | 属性名 | 说明 | 类型 |
 | ----- | ----- | ----- |
 | `$slots` | 所传递的插槽名称 | ^[object]`PowerfulTableExpose['$slots']` |
 | `$attrs` | 所传递的属性并且非 `props` 定义的属性名. [文档](https://cn.vuejs.org/guide/components/attrs.html#attribute-inheritance) | ^[object]`PowerfulTableExpose['$attrs']` |
 | `$refs` | 表格 `Ref` 实例 | ^[object]`PowerfulTableExpose['$refs']` |
+| `props`<tag type='success' content=2.2.4 /> | 表格 `props` 属性 | ^[object]`PowerfulTableExpose['props']` |
+| `injectProps`<tag type='success' content=2.2.4 /> | 使用 `app.use` 时注入的数据 | ^[object]`PowerfulTableExpose['injectProps']` |
 | `headerLists` | 过滤隐藏后的列 | ^[array]`PowerfulTableExpose['headerLists']` |
 | `powerfulTableData` | 内置数据也就是 vue2 中的 data | ^[object]`PowerfulTableExpose['powerfulTableData']` |
 | `stateData` | 状态数据 | ^[object]`PowerfulTableExpose['stateData']` |
