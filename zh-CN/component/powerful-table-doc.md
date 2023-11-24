@@ -189,7 +189,7 @@ app.mount("#app");
 | `customFilter` | 自定义过滤数据 `v(参数为值)，column(参数为header配置项)，resolve(回调函数传递数组)` | ^[function]`(v, column, resolve) => void` | - |
 | `text` | 数据左侧显示的文字 | `string` | - |
 | `reserve` | 当 `prop` 值渲染数据为空时可用 `reserve` 代替空数据 可传 `HTML` 标签  | `HTMLElement / string` | `'no Data'` |
-| `render` | [渲染函数](https://v3.cn.vuejs.org/guide/render-function.html#h-%E5%8F%82%E6%95%B0)  | ^[function]`(h: h, row: Row, index: number) => VNode / string / number` | -  |
+| `render` | [渲染函数](https://v3.cn.vuejs.org/guide/render-function.html#h-%E5%8F%82%E6%95%B0)  | ^[function]`(h: h, row: Row, index: number) => VNode / string / number / JSX.Element` | -  |
 | `style` | 样式  | `CSSProperties` | -  |
 | `slotName` | 插槽名称 | `string` | `'default'` |
 
@@ -437,7 +437,7 @@ export const header: PowerfulTableHeader<Lists>[] = [
 | `btn-plus-change` | 表格顶部左侧操作按钮，`rows` 返回所有选中的行 | ^[function]`({ effect: BtnConfig.BtnList['effect'], rows: Row[] })` |
 | `btn-plus-refresh` | 表格顶部刷新按钮 | - |
 | `row-click` | 行点击事件 | ^[function]`({row: Row, column: any, event: Event})` |
-| `component-event` | 内部组件事件 | ^[function]`({componentName: keyof _TYPE \| 'filter', eventType: string}, ...arg: any)` |
+| `component-event`<tag type='danger' content=3.0.0 /> | 内部组件事件 | ^[function]`({componentName: keyof _TYPE \| 'filter', eventType: string}, ...arg: any)` |
 
 ## Slots
 | 插槽名 | 说明 |
