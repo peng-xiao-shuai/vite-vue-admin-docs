@@ -132,6 +132,10 @@ export default defineConfig({
               text: '表格-示例',
               link: '/zh-CN/component/powerful-table-demo',
             },
+            {
+              text: '表单-文档',
+              link: '/zh-CN/component/form-view-doc',
+            },
           ],
         },
         {
