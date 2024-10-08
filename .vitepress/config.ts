@@ -58,7 +58,7 @@ export default defineConfig({
       { text: '指引', link: '/zh-CN/guide/' },
       {
         text: '组件 & 指令',
-        link: '/zh-CN/component/powerful-table-doc',
+        link: '/zh-CN/component_directive/component/powerful-table-doc',
       },
       {
         text: '相关链接',
@@ -120,27 +120,52 @@ export default defineConfig({
         // },
       ],
 
-      '/zh-CN/component/': [
+      '/zh-CN/component_directive/': [
         {
           text: '组件',
           items: [
             {
               text: '表格-文档',
-              link: '/zh-CN/component/powerful-table-doc',
+              link: '/zh-CN/component_directive/component/powerful-table-doc',
             },
             {
               text: '表格-示例',
-              link: '/zh-CN/component/powerful-table-demo',
+              link: '/zh-CN/component_directive/component/powerful-table-demo',
             },
             {
               text: '表单-文档',
-              link: '/zh-CN/component/form-view-doc',
+              link: '/zh-CN/component_directive/component/form-view-doc',
             },
           ],
         },
         {
           text: '指令',
-          items: [],
+          items: [
+            {
+              text: '数字',
+              link: '/zh-CN/component_directive/directive/(directive)-number',
+            },
+            {
+              text: '按键',
+              link: '/zh-CN/component_directive/directive/(directive)-key',
+            },
+            {
+              text: '节流',
+              link: '/zh-CN/component_directive/directive/(directive)-throttling',
+            },
+            {
+              text: '防抖',
+              link: '/zh-CN/component_directive/directive/(directive)-debounce',
+            },
+            {
+              text: '复制',
+              link: '/zh-CN/component_directive/directive/(directive)-copy',
+            },
+            {
+              text: '权限',
+              link: '/zh-CN/component_directive/directive/(directive)-permission',
+            },
+          ],
         },
       ],
     },

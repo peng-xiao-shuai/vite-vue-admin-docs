@@ -10,8 +10,10 @@ export function MarkdownTransform(): Plugin {
     async transform(code, id) {
       if (!id.endsWith('.md')) return;
 
-      const componentId = path.basename(id, '.md');
-      const pattern = '/zh-CN/component';
+      // 正则匹配括号内容 '(directive)-copy'
+      const match = id.match(/\((.*?)\)/);
+      const componentId = match ? match[1] : path.basename(id, '.md');
+      const pattern = '/zh-CN/component_directive';
 
       if (id.indexOf(pattern) == -1) return;
 
@@ -19,7 +21,7 @@ export function MarkdownTransform(): Plugin {
         headers: [],
         footers: [],
         scriptSetups: [
-          `const demos = import.meta.glob('../../examples/${componentId}/*.vue')`,
+          `const demos = import.meta.glob('../../../examples/${componentId}/*.vue')`,
         ],
       };
 

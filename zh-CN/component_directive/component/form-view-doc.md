@@ -58,49 +58,47 @@ export const columns: PowerfulTableHeader<Lists>[] = [
 
   ``` tsx [index-data.tsx]
 // form-view props formItems
-export const formItems: FormViewPTHeaders[] = [
+export const formItems: FormItem[] = [
   {
-    label: '制作厂',
-    props: {
-      formItem: {
-        type: FormTypeEnum.Select, // 默认 input
-        data: formViewSetData<FormTypeEnum.Select>({
+    text: '制作厂',
+    prop: 'manufacturerHref',
+    type: FormTypeEnum.Select, // 默认 input
+    data: formViewSetData<FormTypeEnum.Select>({
+      options: [
+        {
+          label: 'a1',
+          value: '1',
           options: [
             {
-              label: 'a1',
-              value: '1',
-              options: [
-                {
-                  label: 'a3',
-                  value: '3',
-                },
-                {
-                  label: 'a3',
-                  value: '3',
-                },
-              ],
+              label: 'a3',
+              value: '3',
             },
             {
-              label: 'a2',
-              value: '2',
-              options: [
-                {
-                  label: 'a3',
-                  value: '3',
-                },
-                {
-                  label: 'a3',
-                  value: '3',
-                },
-              ],
+              label: 'a3',
+              value: '3',
             },
           ],
-          slots: {
-            default: (h) => <C />,
-          },
-        }),
+        },
+        {
+          label: 'a2',
+          value: '2',
+          options: [
+            {
+              label: 'a3',
+              value: '3',
+            },
+            {
+              label: 'a3',
+              value: '3',
+            },
+          ],
+        },
+      ],
+      slots: {
+        // 自定义插槽
+        default: (h) => <div>自定义插槽</div>,
       },
-    },
+    }),
   },
 ]
 ```
@@ -156,7 +154,8 @@ export const columns: FormViewPTHeaders[] = [
               },
             ],
             slots: {
-              default: (h) => <C />,
+              // 自定义插槽
+              default: (h) => <div>自定义插槽</div>,
             },
           }),
         },
@@ -533,7 +532,7 @@ type DatePickerEmit<T = {
 |----------|------|------|------|
 | - | - | - | - |
 
-#### Type is UploadFile
+<!-- #### Type is UploadFile
 | 属性名 | 说明 | TS类型 | 默认值 |
 |----------|------|------|------|
 | `style`    | 样式 | ^[object]`CSSProperties` | - |
@@ -566,8 +565,8 @@ type UploadFileEmit<T = {
   'upload-file-success'?: (parameter: T, ...arg: any) => void
   'upload-file-delete'?: (parameter: T, ...arg: any) => void
 }
-```
-
+``` -->
+<!-- 
 #### Type is UploadMedia
 | 属性名 | 说明 | TS类型 | 默认值 |
 |----------|------|------|------|
@@ -599,7 +598,7 @@ type UploadMediaEmit<T = {
   }> = {
   'files-change'?: (parameter: T, ...arg: any) => void
 }
-```
+``` -->
 
 ## Expose
 | 属性名 | 说明 | 类型 |
@@ -611,3 +610,4 @@ type UploadMediaEmit<T = {
 | `formViewData` | 表单数据 | ^[object]`FormViewData` |
 | `formItems` | `formItems` 更具 `props.showType` 过滤后的数据 | ^[array]`FormItem<any>[]` |
 | `submitForm` | 提交校验函数 | ^[function]`(params?: object) => Promise<any>` |
+| `refreshRender` | 刷新从表格继承数据 | ^[function]`(refName?: string, proxy?: globalThis.ComponentPublicInstance) => void` |

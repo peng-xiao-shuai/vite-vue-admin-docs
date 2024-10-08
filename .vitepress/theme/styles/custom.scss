@@ -42,3 +42,41 @@
   margin-left: 0.25rem;
   margin-right: 0.25rem;
 }
+
+// 提示语
+.tipBox {
+  padding: 0px 16px;
+  border-radius: 4px;
+  margin: 20px 0;
+  width: 100%;
+  min-height: 40px;
+  box-sizing: border-box;
+  border-left: 4px solid var(--vp-code-color);
+  background: var(--vp-code-bg);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+
+  .active {
+    font-weight: bold;
+    color: var(--vp-code-color);
+    cursor: pointer;
+  }
+
+  .code{
+    border-radius: 5px;
+    padding: 0 5px;
+    color: #666;
+    background: #eee;
+  }
+
+  p {
+    // margin: 0;
+  }
+}
+
+.tipBox.warning{
+  background-color: rgba(255,229,100,.3);
+  border-color: #e7c000;
+  color: #6b5900;
+}

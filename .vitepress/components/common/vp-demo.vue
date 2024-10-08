@@ -66,7 +66,7 @@ watch(
       setTimeout(async () => {
         props.demos[key]().then((module) => {
           Object.assign(demoDefault, {
-            [key.replace('../../examples/', '').replace('.vue', '')]:
+            [key.replace('../../../examples/', '').replace('.vue', '')]:
               module.default,
           });
         });
