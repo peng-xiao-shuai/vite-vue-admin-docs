@@ -42,11 +42,10 @@ pnpm add el-plus-powerful-table-ts
 
 
 ```ts [main.ts]
-import powerfulTable from "el-plus-powerful-table-ts/es";
-import { LangKey } from "el-plus-powerful-table-ts/es/locale/packages";
+import PowerfulTable, { LangKey } from "el-plus-powerful-table-ts";
 
 const app = createApp(App);
-app.use(powerfulTable, {
+app.use(PowerfulTable, {
   // 更改组件默认语言
   locale: {
     en: {
@@ -67,7 +66,7 @@ app.mount("#app");
 ```
 
 ```vue [app.vue]
-<powerful-table :list="list" :header="header" />
+<PowerfulTable :list="list" :header="header" />
 ```
 
 :::
@@ -189,7 +188,7 @@ app.mount("#app");
 | `customFilter` | 自定义过滤数据 `v(参数为值)，column(参数为header配置项)，resolve(回调函数传递数组)` | ^[function]`(v, column, resolve) => void` | - |
 | `text` | 数据左侧显示的文字 | `string` | - |
 | `reserve` | 当 `prop` 值渲染数据为空时可用 `reserve` 代替空数据 可传 `HTML` 标签  | `HTMLElement / string` | `'no Data'` |
-| `render` | [渲染函数](https://v3.cn.vuejs.org/guide/render-function.html#h-%E5%8F%82%E6%95%B0)  | ^[function]`(h: h, row: Row, index: number) => VNode / string / number / JSX.Element` | -  |
+| `render` | [渲染函数](https://v3.cn.vuejs.org/guide/render-function.html#h-%E5%8F%82%E6%95%B0). 传递 `render` 时，不在根据 `type` 渲染  | ^[function]`(h: h, row: Row, index: number) => VNode / string / number / JSX.Element` | -  |
 | `style` | 样式  | `CSSProperties` | -  |
 | `slotName` | 插槽名称 | `string` | `'default'` |
 
@@ -203,7 +202,7 @@ app.mount("#app");
 ##### Data
 ``` js
 // ...
-data: setData<'image', any>({
+data: {
   style: {
     borderRadius: '10px',
   },
@@ -213,7 +212,7 @@ data: setData<'image', any>({
       // src: 'https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF',
     }
   },
-})
+}
 // ...
 ```
 :::tip
@@ -251,12 +250,12 @@ data: setData<'image', any>({
       {
         type: 'image',
         prop: 'imageUrl',
-        data: setData<'image', Lists>({
+        data: {
           on: {
             load: ({row, index, props}, evt) => {},
             error: ({row, index, props}, evt) => {}
           }
-        }),
+        },
       },
     ],
   },
@@ -378,7 +377,7 @@ data: setData<'image', any>({
 
 
 ``` ts [index-data.ts]
-import type { PowerfulTableHeader } from 'el-powerful-table-ts/es/typings'
+import type { PowerfulTableHeader } from 'el-powerful-table-ts'
 
 interface Lists {
   id: 1
@@ -397,16 +396,16 @@ export const header: PowerfulTableHeader<Lists>[] = [
 ```
 
 ``` vue [app.vue]
-<powerful-table>
+<PowerfulTable>
   <template #A="{ row,index }">
     <div>
-      <el-image
+      <ElImage
         style="width: 100px; border-radius: 10px"
         :src="row.imageUrl"
-      ></el-image>
+      ></ElImage>
     </div>
   </template>
-</powerful-table>
+</PowerfulTable>
 ```
 
 :::
@@ -460,7 +459,7 @@ export const header: PowerfulTableHeader<Lists>[] = [
 ::: code-group
 
 ``` ts [index.ts]
-import { getType, deepClone,isTypeProtect, setData } from 'el-plus-powerful-table/es'
+import { getType, deepClone,isTypeProtect } from 'el-plus-powerful-table'
 import { log } from 'console'
 
 log(getType('1')) // 'String'
@@ -477,20 +476,6 @@ c += 1 // ts 报错
 if (isTypeProtect<typeof c, number>(c, (data) => typeof data === 'number')) {
   c += 1 // 正常
 }
-
-const headers: PowerfulTableHeader<Lists>[] = [{
-  label: '图片',
-  props: [
-    {
-      type: 'image',
-      prop: 'imageUrl',
-      data: setData<'image', Lists>({
-        // 在这里输入的时候 idea 会提示有哪些属性
-      }),
-    },
-  ],
-}]
-
 ```
 
 :::
