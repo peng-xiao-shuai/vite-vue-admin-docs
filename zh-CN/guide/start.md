@@ -1,12 +1,12 @@
 # 开始
 ## 环境准备
 
-本地环境需要安装 [Yarn1.x](https://yarnpkg.com/)、[Node.js](http://nodejs.org/) 和 [Git](https://git-scm.com/)
+本地环境需要安装 [pnpm](https://pnpm.io/)、[Node.js](http://nodejs.org/) 和 [Git](https://git-scm.com/)
 
 ::: warning 注意
 
-- 必须使用[Yarn1.x](https://yarnpkg.com/)，否则依赖可能安装不上。
-- [Node.js](http://nodejs.org/) 版本要求`12.x`以上，且不能为`13.x`版本，这里推荐 `14.x` 及以上。
+- 推荐使用 [pnpm](https://pnpm.io/)。
+- [Node.js](http://nodejs.org/) 这里推荐 `18.x` 及以上。
 
 :::
 
@@ -40,10 +40,10 @@ git clone https://github.com/peng-xiao-shuai/vite-vue-admin.git
 cd vite-vue-admin
 
 # 安装依赖 强烈推荐使用 Yarn
-yarn install
+pnpm install
 
 # 本地开发 启动项目
-yarn run dev
+pnpm dev
 ```
 
 ::: tip TIP
