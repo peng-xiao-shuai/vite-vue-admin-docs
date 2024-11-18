@@ -134,7 +134,11 @@ export default defineConfig({
             },
             {
               text: '表单-文档',
-              link: '/zh-CN/component_directive/component/form-view-doc',
+              link: '/zh-CN/component_directive/component/powerful-form-doc',
+            },
+            {
+              text: '表单-示例',
+              link: '/zh-CN/component_directive/component/powerful-form-demo',
             },
           ],
         },

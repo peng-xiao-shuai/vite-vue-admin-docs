@@ -37,6 +37,10 @@ export default {
           }
         );
       });
+
+      import('el-plus-powerful-form').then((module) => {
+        app.use(module.default);
+      });
     }
   },
 };
