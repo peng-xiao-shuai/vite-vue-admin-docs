@@ -720,4 +720,5 @@ type UploadMediaEmit<T = {
 | `powerfulFormData` | `PowerfulForm` 组件数据 | ^[object]`PowerfulFormData` |
 | `formItems` | `formItems` 更具 `props.showType` 过滤后的数据 | ^[array]`FormItem<any>[]` |
 | `submitForm` | 提交校验函数 | ^[function]`(params?: object, options?: { successMessage?: string, errorMessage?: string }) => Promise<any>` |
+| `visibleFormTrigger` | 控制表单显隐 | ^[function]`() => boolean` |
 | `refreshRender` | 刷新从表格继承数据 | ^[function]`(refName?: string, proxy?: globalThis.ComponentPublicInstance) => void` |
