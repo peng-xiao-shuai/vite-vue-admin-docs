@@ -269,7 +269,7 @@ app.mount("#app");
 ## Attributes
 | 属性名 | 说明 | TS类型 | 默认值 |
 | ---- | --- | ------ | ------ |
-| `showType` | 显示类型 | `string` | - |
+| `showType` | 显示类型，当为 `query` 时不会向 `el-form` 传递 `rule` | `string` | - |
 | `extendTable` | 是否继承表格。如果是 `true` 的话自动查找 `table` 组件 `ref` 名称为 `PTable` 的，也可以传递 `table` 的 `Ref` 名称 | `boolean \| string` | `false` |
 | `formItems` | 表单配置 | ^[array]`FormItem[]` | - |
 | `formDataDefault` | 表单默认值 | `object` | - |
