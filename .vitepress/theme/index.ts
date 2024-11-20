@@ -1,7 +1,6 @@
 import DefaultTheme from 'vitepress/theme';
 import 'element-plus/theme-chalk/src/index.scss';
 import 'element-plus/theme-chalk/dark/css-vars.css';
-import 'el-plus-powerful-table-ts/es/style.css';
 import './styles/index.scss';
 import { VPDemo, VPLayout, VPApiTyping, VPTag } from '../components/index';
 import Empty from '../../examples/powerful-table-demo/empty';
@@ -16,8 +15,8 @@ export default {
       import('element-plus').then((module) => {
         app.use(module);
       });
-      import('el-plus-powerful-table-ts/es').then((module) => {
-        import('el-plus-powerful-table-ts/es/locale/packages').then(
+      import('el-plus-powerful-table').then((module) => {
+        import('el-plus-powerful-table/es/locale/packages').then(
           ({ LangKey }) => {
             app.use(module.default, {
               emptyElement: Empty,

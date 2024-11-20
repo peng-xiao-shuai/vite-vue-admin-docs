@@ -6,12 +6,12 @@
 <script lang="ts" setup>
 import { useBasicTableData, Lists } from './index';
 import { ref, onMounted } from 'vue';
-import type { PowerfulTableHeader } from 'el-plus-powerful-table-ts';
+import type { PowerfulTableHeader } from 'el-plus-powerful-table';
 const header = ref<PowerfulTableHeader<Lists>[]>([]);
 const { lists } = useBasicTableData();
 
 onMounted(() => {
-  import('el-plus-powerful-table-ts/es').then(({ setData }) => {
+  import('el-plus-powerful-table/es').then(({ setData }) => {
     header.value = [
       {
         label: '发动机名称', // 此标题不会显示，因为配置了 自定义表头 headerSlotName

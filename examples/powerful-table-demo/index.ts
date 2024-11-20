@@ -1,8 +1,8 @@
 import { toRefs, ref, onMounted, markRaw, onBeforeMount } from 'vue';
-import type { PowerfulTableHeader } from 'el-plus-powerful-table-ts';
+import type { PowerfulTableHeader } from 'el-plus-powerful-table';
 import { ElMessageBox } from 'element-plus/es';
 import { Edit } from '@element-plus/icons-vue';
-import { setData } from 'el-plus-powerful-table-ts/es';
+import { setData } from 'el-plus-powerful-table';
 
 type Lists = {
   id?: number;

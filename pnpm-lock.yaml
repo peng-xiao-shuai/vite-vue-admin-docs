@@ -17,7 +17,7 @@ importers:
       el-plus-powerful-form:
         specifier: 1.0.6
         version: 1.0.6(vue@3.5.13)
-      el-plus-powerful-table-ts:
+      el-plus-powerful-table:
         specifier: 2.2.16
         version: 2.2.16(vue@3.5.13)
       element-plus:
@@ -1056,8 +1056,8 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
-  el-plus-powerful-table-ts@2.2.16:
-    resolution: {integrity: sha512-d4ay+avOH7F0UgmGRSzr/Dqe6mag+XR5sSpDuXBLU4L2rlwbcbTEGqQ9YgH7GMl//WkaWtavRwR+4SsSXpk70g==}
+  el-plus-powerful-table@2.2.16:
+    resolution: {integrity: sha512-gHFTGZEET8V3t8BHiNQOWi0K6DDyYENKGTYyLJ6F4L32S3e8OBNBqHWs0P83+XFP3M93XLovCh91upw45wR8Bw==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -2418,7 +2418,7 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
 
-  el-plus-powerful-table-ts@2.2.16(vue@3.5.13):
+  el-plus-powerful-table@2.2.16(vue@3.5.13):
     dependencies:
       '@element-plus/icons-vue': 2.3.1(vue@3.5.13)
       element-plus: 2.8.8(vue@3.5.13)

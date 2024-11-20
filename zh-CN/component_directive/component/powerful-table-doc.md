@@ -25,15 +25,15 @@ outline: [1, 5]
 ::: code-group
 
 ```sh [npm]
-npm i el-plus-powerful-table-ts
+npm i el-plus-powerful-table
 ```
 
 ```sh [yarn]
-yarn add el-plus-powerful-table-ts
+yarn add el-plus-powerful-table
 ```
 
 ```sh [pnpm]
-pnpm add el-plus-powerful-table-ts
+pnpm add el-plus-powerful-table
 ```
 
 :::
@@ -42,7 +42,7 @@ pnpm add el-plus-powerful-table-ts
 
 
 ```ts [main.ts]
-import PowerfulTable, { LangKey } from "el-plus-powerful-table-ts";
+import PowerfulTable, { LangKey } from "el-plus-powerful-table";
 
 const app = createApp(App);
 app.use(PowerfulTable, {

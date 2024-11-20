@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { BtnConfig, Handlers } from 'el-plus-powerful-table-ts';
+import type { BtnConfig, Handlers } from 'el-plus-powerful-table';
 import { markRaw, reactive } from 'vue';
 import { useBasicTableData, Lists } from './index';
 const { headers, lists } = useBasicTableData();
