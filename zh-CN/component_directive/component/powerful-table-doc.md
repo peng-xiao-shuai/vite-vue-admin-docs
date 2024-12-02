@@ -156,6 +156,9 @@ app.mount("#app");
 | `text` | 按钮文字 | `string` | - |
 | `effect` | 自定义数据将会在自定义事件 `btn-plus-change` 抛出 | `string` | - |
 | `showBtn` | 控制按钮显示隐藏 | ^[function / boolean]`(row: Row, index: number) => boolean \| boolean` | - |
+| `click` | 按钮点击事件回调函数 | ^[function]`({ btnItem, rows }: { btnItem: BtnList; rows: Row }) => void` | - |
+| `beforeClick` | 按钮点击前的回调函数 | ^[function]`({ btnItem, rows }: { btnItem: BtnList; rows: Row }, resolve: (value: boolean) => void) => void` | - |
+| `property` | 按钮组件的属性对象 (支持 `el-button` 组件所有属性名) | ^[object]`ElComponentProp<ButtonProps, any>` | - |
 
 ### Header
 
@@ -433,7 +436,7 @@ export const header: PowerfulTableHeader<Lists>[] = [
 | `sort-custom` | 远程排序 | ^[function]`({ column: any, prop: string, order: string })` |
 | `batch-operate` | 批量操作 | ^[function]`({ ids: (string \| number)[], item: PowerfulTableLabelValue, rows: Row[]})` |
 | `btn-click` | 表格操作按钮 | ^[function]`({params: BtnDataType['params'], row: Row, index: number})` |
-| `btn-plus-change` | 表格顶部左侧操作按钮，`rows` 返回所有选中的行 | ^[function]`({ effect: BtnConfig.BtnList['effect'], rows: Row[] })` |
+| `btn-plus-change` | 表格顶部操作按钮（除开`refresh、switch、columns`），`rows` 返回所有选中的行 | ^[function]`({ effect: BtnConfig.BtnList['effect'], rows: Row[] })` |
 | `btn-plus-refresh` | 表格顶部刷新按钮 | - |
 | `row-click` | 行点击事件 | ^[function]`({row: Row, column: any, event: Event})` |
 | `component-event`<tag type='danger' content=3.0.0 /> | 内部组件事件 | ^[function]`({componentName: keyof _TYPE \| 'filter', eventType: string}, ...arg: any)` |

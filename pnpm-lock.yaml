@@ -15,7 +15,7 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0(vite@4.5.5(@types/node@20.17.6)(sass@1.81.0))(vue@3.5.13)
       el-plus-powerful-form:
-        specifier: 1.0.6
+        specifier: 1.0.15
         version: 1.0.6(vue@3.5.13)
       el-plus-powerful-table:
         specifier: 2.2.16
@@ -1051,7 +1051,7 @@ packages:
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
-  el-plus-powerful-form@1.0.6:
+  el-plus-powerful-form@1.0.15:
     resolution: {integrity: sha512-MllRuQlcmsxdAVvP39agI3KkUgQyo0EgVnAZ5AZ6BhjJY1qyvN8z6LZaWoWIuMGVMBOWYbrA2xFC17ZTVYSTag==}
     peerDependencies:
       vue: ^3.2.0
@@ -2410,7 +2410,7 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
-  el-plus-powerful-form@1.0.6(vue@3.5.13):
+  el-plus-powerful-form@1.0.15(vue@3.5.13):
     dependencies:
       '@element-plus/icons-vue': 2.3.1(vue@3.5.13)
       element-plus: 2.8.8(vue@3.5.13)

@@ -25,7 +25,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
-    "el-plus-powerful-form": "1.0.6",
+    "el-plus-powerful-form": "1.0.15",
     "el-plus-powerful-table": "2.2.16",
     "element-plus": "^2.8.8",
     "markdown-it": "^13.0.2",
